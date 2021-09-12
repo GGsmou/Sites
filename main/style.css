@@ -4,6 +4,7 @@
 }
 body
 {
+	height: 100%;
 	margin: 10;
 	padding: 0;
 	overflow-y: scroll;
@@ -17,7 +18,7 @@ header
 {
 	width: 100%;
 	height: 200px;
-	overflow-x: auto;
+	overflow-x: fixed;
   	overflow-y: hidden;
   	position: relative;
 }
@@ -88,6 +89,9 @@ h3
 .pic:hover img{
 	width: 250px; 
 	height: 250px;
+}
+footer{
+	text-align: center;
 }
 /*----------------------------*/
 @media screen and (max-width: 620px) 
