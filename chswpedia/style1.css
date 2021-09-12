@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Play&display=swap');
+::-webkit-scrollbar {
+  width: 0;
+}
+body{
+	margin: 10;
+	padding: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-image: url(img/bg2.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Play', sans-serif;
+}
+header
+{
+	width: 100%;
+	height: 84px;
+	overflow-x: auto;
+  	overflow-y: hidden;
+  	position: relative;
+  	background-color: rgba(34, 51, 85, 0.6);
+  	border: 2px solid rgba(34, 51, 85, 0.6);
+}
+#title
+{
+	float: left;
+	position: absolute;
+    height: 50%;
+	margin-left: 5px;
+	font-family: 'Lobster', cursive;
+	color: white;
+}
+#paragraps
+{
+	text-align: center;
+	margin-top: 55px;
+}
+#logo
+{
+	float: right;
+	margin-right: 5px;
+	align-content: center;
+	position: absolute;
+    height: 50%;
+    top: 20%;
+    right: 0%;
+}
+footer
+{
+	width: 100%;
+	height: 74px;
+	background-color: #223355;
+	border: 2px solid rgba(34, 51, 85, 0.6);
+}
+#social
+{
+	text-align: center;
+	margin-top: 5px;
+}
+#cop
+{
+	text-align: center;
+	color: white;
+}
+#cop2
+{
+	text-align: center;
+	color: lightgray;
+}
+#main
+{
+	background-color: rgba(255,255,255,0.6);
+
+}
+p
+{
+	padding: 2px;
+}
+.btn 
+{
+  width: 90px;
+  height: 20px;
+  padding: 1px 1px;
+  border: 2px solid #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+.btn:hover 
+{
+   box-shadow:
+   -4px -4px 5px 0px #fff9,
+   4px 4px 5px 0px #0001;
+}
+a
+{
+	color: #223355;
+}
+@media screen and (max-width: 720px) 
+{
+  .btn
+  {
+    width: 30px;
+  }
+}
+/*----------------------------*/
+@media screen and (max-width: 720px) 
+{
+  .bb:before 
+  {
+    content: "До";
+  }
+}
+@media screen and (min-width: 721px) 
+{
+  .bb:before 
+  {
+    content: 'Эпоха "До"';
+  }
+}
+@media screen and (max-width: 720px) 
+{
+  .b1:before 
+  {
+    content: "1";
+  }
+}
+@media screen and (min-width: 721px) 
+{
+  .b1:before 
+  {
+    content: 'Эпоха "1"';
+  }
+}
+@media screen and (max-width: 720px) 
+{
+  .b2:before 
+  {
+    content: "2";
+  }
+}
+@media screen and (min-width: 721px) 
+{
+  .b2:before 
+  {
+    content: 'Эпоха "2"';
+  }
+}
+@media screen and (max-width: 720px) 
+{
+  .b3:before 
+  {
+    content: "3";
+  }
+}
+@media screen and (min-width: 721px) 
+{
+  .b3:before 
+  {
+    content: 'Эпоха "3"';
+  }
+}
+/*----------------------------*/

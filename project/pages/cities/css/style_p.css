@@ -1,0 +1,118 @@
+@font-face {
+	font-family: 'Travelling';
+	src: url('../fonts/Travelling.eot?#iefix') format('embedded-opentype'), url('../fonts/Travelling.woff') format('woff'), url('../fonts/Travelling.ttf') format('truetype'), url('../fonts/Travelling.svg#Travelling') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background: url(../img/bg_p.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	font-family: "Comic Sans MS", serif; 
+}
+.country{
+	width: 1000px;
+	margin: 50px auto;
+	border-radius: 2px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.c_title{
+	font-family: 'Travelling' !important;
+	font-size: 99px;
+          margin: 0;
+    color: black;
+}
+.c_title{
+	font-size: 99px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2pt;
+	word-spacing: 1.8pt;
+	padding: 10px;
+	margin-top: 20px;
+}
+h2{
+	font-family: 'Travelling' !important;
+	font-size: 45px;
+          margin: 0;
+    color: black;
+}
+.c_date{
+	font-size: 10px;
+	font-variant: small-caps;
+	letter-spacing: 0pt;
+	word-spacing: 1.8pt;
+	color:#DCDCDC;
+	padding: 10px;
+}
+.c_content{
+	font-size: 16px;
+	font-variant: small-caps;
+	text-align: justify;
+	letter-spacing: 0pt;
+	word-spacing: 1.8pt;
+	padding: 10px;
+}
+.c_content h1,p{
+	padding: 10px;
+}
+.c_content ol{
+	padding: 15px;
+}
+#goBack
+{
+	width: 150px;
+	height: 30px;
+	background-color: white;
+	text-align: center;
+	position:relative;
+	top: 10px;
+	margin: auto;
+	border-radius: 50px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-size: 18pt;
+	padding: 15px;
+
+}
+#goBack a
+{
+	text-decoration: none;
+	color:black;
+}
+#goBack:hover
+{
+	background-color: lightblue;
+}
+.c_begin
+{
+	font-size: 10px;
+	font-variant: small-caps;
+	letter-spacing: 0pt;
+	word-spacing: 1.8pt;
+	color:#DCDCDC;
+	padding: 10px;
+}
+.c_begin a
+{
+	text-decoration: none;
+	color:#DCDCDC;
+}
+.c_begin a:hover
+{
+	color:black;
+}
+img{
+	width: 75%;
+}
+.c_img img{
+	width: 100%;
+}
+li{
+	list-style-type: disc;
+}
