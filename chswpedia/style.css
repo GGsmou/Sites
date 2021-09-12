@@ -98,6 +98,7 @@ a
 {
 	color: #223355;
 }
+/*----------------------------*/
 @media screen and (max-width: 720px) 
 {
   .btn
@@ -105,7 +106,6 @@ a
     width: 30px;
   }
 }
-/*----------------------------*/
 @media screen and (max-width: 720px) 
 {
   .bb:before 
