@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url>
-		<loc>https://www.chsw.pp.ua/index.html</loc>
-	</url>
-	<url>
-		<loc>https://www.chsw.pp.ua/chswpedia/index.html</loc>
-	</url>
-	<url>
-		<loc>https://www.chsw.pp.ua/timer/index.html</loc>
-	</url>
-	<url>
-		<loc>https://www.chsw.pp.ua/project/index.html</loc>
-	</url>
+  <url>
+    <loc>https://chsw.pp.ua/index.html</loc>
+  </url>
+  <url>
+    <loc>https://chsw.pp.ua/chswpedia/index.html</loc>
+  </url>
+  <url>
+    <loc>https://chsw.pp.ua/timer/index.html</loc>
+  </url>
+  <url>
+    <loc>https://chsw.pp.ua/project/index.html</loc>
+  </url>
 </urlset>
