@@ -8,7 +8,6 @@ body{
 	padding: 0;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	background-image: url(img/bg2.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Play', sans-serif;
