@@ -89,3 +89,19 @@ main
 	width: 250px; 
 	height: 250px;
 }
+/*----------------------------*/
+@media screen and (max-width: 720px) 
+{
+  main
+  {
+    margin: 75px 0px 75px 0px;
+  }
+}
+@media screen and (min-width: 721px) 
+{
+  main
+  {
+    margin: 130px 0px 130px 0px;
+  }
+}
+/*----------------------------*/
