@@ -110,6 +110,18 @@ b
 /*----------------------------*/
 @media screen and (max-width: 720px) 
 {
+  header
+  {
+    width: 80%;
+  }
+  main
+  {
+    width: 80%;
+  }
+  footer
+  {
+    width: 80%;
+  }
   .btn
   {
     width: 30px;
@@ -133,6 +145,18 @@ b
 }
 @media screen and (min-width: 721px) 
 {
+  header
+  {
+    width: 70%;
+  }
+  main
+  {
+    width: 70%;
+  }
+  footer
+  {
+    width: 70%;
+  }
   .bb:before 
   {
     content: 'Эпоха "До"';
