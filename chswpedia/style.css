@@ -19,8 +19,8 @@ header
 	overflow-x: auto;
   overflow-y: hidden;
   position: relative;
-  background-color: rgba(34, 51, 85, 0.6);
-  border: 2px solid rgba(34, 51, 85, 0.6);
+  background-color: rgba(34, 51, 85, 0.8);
+  border: 2px solid rgba(34, 51, 85, 0.8);
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -52,7 +52,7 @@ footer
 	width: 70%;
 	height: 74px;
 	background-color: #223355;
-	border: 2px solid rgba(34, 51, 85, 0.6);
+	border: 2px solid rgba(34, 51, 85, 0.8);
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -75,8 +75,8 @@ main
 {
   text-align: left;
   width: 70%;
-	background-color: rgba(255,255,255,0.6);
-  border: 2px solid rgba(255,255,255,0.6);
+	background-color: rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.8);
   padding-left: 30px;
   padding-right: 30px;
 }
