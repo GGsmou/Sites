@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Play&family=Montserrat&display=swap');
 
-::-webkit-scrollbar {
+::-webkit-scrollbar 
+{
   width: 0;
 }
-body{
+body
+{
 	margin: 10px;
 	padding: 0;
 	overflow-y: scroll;
@@ -93,9 +95,9 @@ main
 }
 .btn:hover 
 {
-   box-shadow:
-   -4px -4px 5px 0px #fff9,
-   4px 4px 5px 0px #0001;
+  box-shadow:
+  -4px -4px 5px 0px #fff9,
+  4px 4px 5px 0px #0001;
 }
 a
 {
@@ -105,6 +107,61 @@ b
 {
   font-size: 24px;
   font-family: 'Montserrat', sans-serif;
+}
+details > summary 
+{
+  padding: 5px;
+  background-color: rgba(200,200,200,0.5);
+  border: 1px #ccc solid;
+  cursor: pointer;
+  list-style: none;
+}
+details[open] > summary 
+{
+  color: white; 
+  background-color: rgba(34, 51, 85, 0.5);;
+}
+summary:before 
+{
+  content: "+";
+  font-size: 20px;
+  font-weight: bold;
+  margin: -5px 5px 0 0;
+}
+details[open] summary:before 
+{
+  content: "-";
+}
+.img20{
+  width: 20%;
+  transition: transform .5s ease;
+}
+.img30{
+  width: 30%;
+  transition: transform .5s ease;
+}
+.img40{
+  width: 40%;
+  transition: transform .5s ease;
+}
+.img50{
+  width: 50%;
+  transition: transform .5s ease;
+}
+.img50f{
+  width: 50%;
+}
+.img20:hover{
+  width: 50%;
+}
+.img30:hover{
+  width: 60%;
+}
+.img40:hover{
+  width: 70%;
+}
+.img50:hover{
+  width: 80%;
 }
 /*----------------------------*/
 @media screen and (max-width: 720px) 

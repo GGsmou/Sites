@@ -54,27 +54,13 @@ main
 	border-radius:50%;
 	position: relative;
 	cursor: pointer;
-}
-.pic
-{
-  -webkit-transition: transform .5s ease;
-  transition: transform .5s ease;
-  -moz-transition: transform .5s ease;
-  -ms-transition: transform .5s ease;
-  -o-transition: transform .5s ease;
+	transition: transform .5s ease;
 }
 .pic img
 {
 	width: 230px; 
 	height: 230px;
-}
-.pic img
-{
-  -webkit-transition: transform .5s ease;
-  transition: transform .5s ease;
-  -moz-transition: transform .5s ease;
-  -ms-transition: transform .5s ease;
-  -o-transition: transform .5s ease;
+	transition: transform .5s ease;
 }
 .pic:hover
 {
