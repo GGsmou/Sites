@@ -1,0 +1,69 @@
+codedecode = int(input('decode == 0 | code == 1 | answer = '))
+eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+rus = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+ukr = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
+num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+def split(s):
+    return [char for char in s]
+def listToString(s):
+    str1 = ""
+    for ele in s:
+        str1 += ele
+    return str1
+
+if codedecode == 1:
+    text = []
+
+    dicnum = int(input('eng == 0 | rus == 1 | ukr == 2 | language = '))
+    textc = str(input('text: '))
+    textcsplit = split(textc)
+
+    if dicnum == 0: dic=eng
+    elif dicnum == 1:dic=rus
+    elif dicnum == 2:dic=ukr
+    else:
+        print('Error | Incorrect language number')
+        exit()
+    text.append(str(dicnum))
+
+    for i in range(len(textcsplit)):
+        if textcsplit[i] in dic:
+            text.append('.'+str((dic.index(textcsplit[i])+1)))
+        elif textcsplit[i] in num:
+            text.append(','+str(textcsplit[i]))
+        elif textcsplit[i] == ' ':
+            text.append(' ')
+        else:
+            text.append('/'+str(textcsplit[i]))
+    print(listToString(text))
+elif codedecode == 0:
+    code = []
+
+    codec = str(input('code: '))
+    codecsplit = split(codec)
+
+    if codecsplit[0] == '0': dic=eng
+    elif codecsplit[0] == '1':dic=rus
+    elif codecsplit[0] == '2':dic=ukr
+    else:
+        print('Error | Incorrect first number')
+        exit()
+
+    for i in range(len(codecsplit)):
+        if codecsplit[i] == '.' and codecsplit[i + 1] in num:
+            if i + 3 <= len(codecsplit):
+                if codecsplit[i + 2] in num:
+                    code.append(dic[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
+                else:
+                    code.append(dic[int(codecsplit[i + 1]) - 1])
+            else:
+                code.append(dic[int(codecsplit[i + 1]) - 1])
+        elif codecsplit[i] == ',' and codecsplit[i + 1] in num:
+            code.append((codecsplit[i + 1]))
+        elif codecsplit[i] == '/':
+            code.append((codecsplit[i + 1]))
+        elif codecsplit[i] == ' ':
+            code.append(' ')
+    print(listToString(code))
+else:
+    print('Error | Incorect answer')
