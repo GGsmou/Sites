@@ -1,0 +1,91 @@
+codedecode = int(input('decode == 0 | code == 1 | answer = '))
+eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+rus = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+ukr = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
+engU = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+rusU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
+ukrU = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ю', 'Я']
+num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+dic = []
+dicU = []
+def split(s):
+    return [char for char in s]
+def listToString(s):
+    str1 = ""
+    for ele in s:
+        str1 += ele
+    return str1
+
+if codedecode == 1:
+    text = []
+
+    textc = str(input('text: '))
+    textcsplit = split(textc)
+
+    for i in range(len(textcsplit)):
+        if (textcsplit[i] in eng or textcsplit[i] in engU) and dic != eng:
+            dic = eng
+            dicU = engU
+            text.append('&' + str(0))
+        elif (textcsplit[i] in rus or textcsplit[i] in rusU) and dic != rus:
+            dic = rus
+            dicU = rusU
+            text.append('&' + str(1))
+        elif (textcsplit[i] in ukr or textcsplit[i] in ukrU) and dic != ukr:
+            dic = ukr
+            dicU = ukrU
+            text.append('&' + str(2))
+
+        if textcsplit[i] in dic:
+            text.append('.'+str((dic.index(textcsplit[i])+1)))
+        elif textcsplit[i] in dicU:
+            text.append(':'+str((dicU.index(textcsplit[i])+1)))
+        elif textcsplit[i] in num:
+            text.append(','+str(textcsplit[i]))
+        elif textcsplit[i] == ' ':
+            text.append('_')
+        else:
+            text.append('/'+str(textcsplit[i]))
+    print(listToString(text))
+elif codedecode == 0:
+    code = []
+
+    codec = str(input('code: '))
+    codecsplit = split(codec)
+
+    for i in range(len(codecsplit)):
+        if codecsplit[i] == '&':
+            if codecsplit[i+1] == '0':
+                dic = eng
+                dicU = engU
+            elif codecsplit[i+1] == '1':
+                dic = rus
+                dicU = rusU
+            elif codecsplit[i+1] == '2':
+                dic = ukr
+                dicU = ukrU
+        elif codecsplit[i] == '.' and codecsplit[i + 1] in num:
+            if i + 3 <= len(codecsplit):
+                if codecsplit[i + 2] in num:
+                    code.append(dic[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
+                else:
+                    code.append(dic[int(codecsplit[i + 1]) - 1])
+            else:
+                code.append(dic[int(codecsplit[i + 1]) - 1])
+        elif codecsplit[i] == ':' and codecsplit[i + 1] in num:
+            if i + 3 <= len(codecsplit):
+                if codecsplit[i + 2] in num:
+                    code.append(dicU[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
+                else:
+                    code.append(dicU[int(codecsplit[i + 1]) - 1])
+            else:
+                code.append(dicU[int(codecsplit[i + 1]) - 1])
+        elif codecsplit[i] == ',' and codecsplit[i + 1] in num:
+            code.append((codecsplit[i + 1]))
+        elif codecsplit[i] == '/':
+            code.append((codecsplit[i + 1]))
+        elif codecsplit[i] == '_':
+            code.append(' ')
+    print(listToString(code))
+else:
+    print('Error | Incorect answer')
