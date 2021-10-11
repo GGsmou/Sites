@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Play&family=Montserrat&display=swap');
+
+::-webkit-scrollbar 
+{
+  width: 0;
+}
+body
+{
+	margin: 10px;
+	padding: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-size: cover;
+	background-attachment: fixed;
+  background-image: url(img/bg1.jpg);
+	font-family: 'Play', sans-serif;
+}
+header
+{
+	width: 70%;
+	height: 84px;
+	overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  background-color: rgba(34, 51, 85, 0.8);
+  border: 2px solid rgba(34, 51, 85, 0.8);
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#title
+{
+	float: left;
+	position: absolute;
+  height: 50%;
+	font-family: 'Lobster', cursive;
+	color: white;
+}
+#paragraps
+{
+	text-align: center;
+	margin-top: 55px;
+}
+#logo
+{
+	float: right;
+	margin-right: 30px;
+	align-content: center;
+	position: absolute;
+  height: 50%;
+  top: 20%;
+  right: 0%;
+}
+footer
+{
+	width: 70%;
+	height: 74px;
+	background-color: #223355;
+	border: 2px solid rgba(34, 51, 85, 0.8);
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#social
+{
+	text-align: center;
+	margin-top: 5px;
+}
+#cop
+{
+	text-align: center;
+	color: white;
+}
+#cop2
+{
+	text-align: center;
+	color: lightgray;
+}
+main
+{
+  text-align: left;
+  width: 70%;
+	background-color: rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.8);
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.btn 
+{
+  width: 90px;
+  height: 20px;
+  padding: 1px 1px;
+  border: 2px solid #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+.btn:hover 
+{
+  box-shadow:
+  -4px -4px 5px 0px #fff9,
+  4px 4px 5px 0px #0001;
+}
+a
+{
+	color: #223355;
+}
+b
+{
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+}
+details > summary 
+{
+  padding: 5px;
+  background-color: rgba(200,200,200,0.5);
+  border: 1px #ccc solid;
+  cursor: pointer;
+  list-style: none;
+}
+details[open] > summary 
+{
+  color: white; 
+  background-color: rgba(34, 51, 85, 0.5);;
+}
+summary:before 
+{
+  content: "+";
+  font-size: 20px;
+  font-weight: bold;
+  margin: -5px 5px 0 0;
+}
+details[open] summary:before 
+{
+  content: "-";
+}
+.img20{
+  width: 20%;
+  transition: transform .5s ease;
+}
+.img30{
+  width: 30%;
+  transition: transform .5s ease;
+}
+.img40{
+  width: 40%;
+  transition: transform .5s ease;
+}
+.img50{
+  width: 50%;
+  transition: transform .5s ease;
+}
+.img50f{
+  width: 50%;
+}
+.img20:hover{
+  width: 50%;
+}
+.img30:hover{
+  width: 60%;
+}
+.img40:hover{
+  width: 70%;
+}
+.img50:hover{
+  width: 80%;
+}
+/*----------------------------*/
+@media screen and (max-width: 720px) 
+{
+  header
+  {
+    width: 80%;
+  }
+  main
+  {
+    width: 80%;
+  }
+  footer
+  {
+    width: 80%;
+  }
+  .btn
+  {
+    width: 30px;
+  }
+  .br:before 
+  {
+    content: "П";
+  }
+  .bl:before 
+  {
+    content: "З";
+  }
+  .bj:before 
+  {
+    content: "С";
+  }
+  .bm:before 
+  {
+    content: "О";
+  }
+}
+@media screen and (min-width: 721px) 
+{
+  header
+  {
+    width: 70%;
+  }
+  main
+  {
+    width: 70%;
+  }
+  footer
+  {
+    width: 70%;
+  }
+  .br:before 
+  {
+    content: 'Правила';
+  }
+  .bl:before 
+  {
+    content: 'Законы';
+  }
+  .bj:before 
+  {
+    content: 'Суд';
+  }
+  .bm:before 
+  {
+    content: 'Основа';
+  }
+}
+/*----------------------------*/
