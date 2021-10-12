@@ -47,7 +47,6 @@ header
 	align-content: center;
 	position: absolute;
   height: 50%;
-  top: 20%;
   right: 0%;
 }
 footer
@@ -194,6 +193,19 @@ details[open] summary:before
   {
     width: 80%;
   }
+  #logo
+  {
+  top: 30%;
+  }
+  #logo img{
+    width: 40px;
+  }
+  #title {
+    top: 20%;
+  }
+  #title h1{
+    font-size: 20px;
+  }
   .btn
   {
     width: 30px;
@@ -228,6 +240,19 @@ details[open] summary:before
   footer
   {
     width: 70%;
+  }
+  #logo
+  {
+  top: 20%;
+  }
+  #logo img{
+    width: 50px;
+  }
+  #title {
+
+  }
+  #title h1{
+    font-size: 32px;
   }
   .bm:before 
   {
