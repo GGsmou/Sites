@@ -133,6 +133,21 @@ details[open] summary:before
 {
   content: "-";
 }
+#inner{
+  width: 70%;
+  margin-left: 10px;
+}
+#inners:before 
+{
+  content: "■";
+  font-size: 20px;
+  font-weight: bold;
+  margin: -5px 5px 0 0;
+}
+#inner[open] #inners:before 
+{
+  content: "🞐";
+}
 .img20{
   width: 20%;
   transition: transform .5s ease;
@@ -212,6 +227,10 @@ details[open] summary:before
   {
     content: "Д";
   }
+  .bm:before 
+  {
+    content: "О";
+  }
 }
 @media screen and (min-width: 721px) 
 {
@@ -255,6 +274,10 @@ details[open] summary:before
   .bd:before 
   {
     content: 'Дуэли';
+  }
+  .bm:before 
+  {
+    content: 'Основа';
   }
 }
 /*----------------------------*/
