@@ -150,19 +150,19 @@ details[open] summary:before
 }
 .img20{
   width: 20%;
-  transition: transform .5s ease;
+  transition: all .3s ease;
 }
 .img30{
   width: 30%;
-  transition: transform .5s ease;
+  transition: all .3s ease;
 }
 .img40{
   width: 40%;
-  transition: transform .5s ease;
+  transition: all .3s ease;
 }
 .img50{
   width: 50%;
-  transition: transform .5s ease;
+  transition: all .3s ease;
 }
 .img50f{
   width: 50%;
