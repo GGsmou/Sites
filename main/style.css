@@ -54,13 +54,13 @@ main
 	border-radius:50%;
 	position: relative;
 	cursor: pointer;
-	transition: transform .5s ease;
+	transition: all .3s ease;
 }
 .pic img
 {
 	width: 230px; 
 	height: 230px;
-	transition: transform .5s ease;
+	transition: all .3s ease;
 }
 .pic:hover
 {
