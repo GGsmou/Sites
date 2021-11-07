@@ -31,14 +31,37 @@ body
     transform: translate(-50%, -50%);
     text-align: center;
 }
-i
+input
 {
-    font-size: 20px;
+    width: 500px;
+}
+button 
+{
+  width: 100px;
+  height: 25px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 1px 1px;
+  border: 2px solid #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+button:hover 
+{
+  box-shadow:
+  -4px -4px 5px 0px #fff9,
+  4px 4px 5px 0px #0001;
 }
 @media (max-width: 600px)
 {
     body
     {
         font-size: 20px;
+    }
+    input
+    {
+        width: 200px;
     }
 }
