@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Code</title>
+	<link rel="shortcut icon" href="logo.png" type="image/png">
+	<link rel="stylesheet" href="style.css">
 	<script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
 </head>
@@ -143,10 +145,20 @@
 	document["decode"].bind("click", decode)
 
 	</script>
-	<input id="codez">
-	<button id="code">code</button>
-	<input id="decodez">
-	<button id="decode">decode</button>
+
+	<div class="topleft">
+		<p>Кодировка<br>
+		<i>Введите текст/код в поля ниже и нажмите соответствующую кнопку для получения результата</i></p>
+	</div>
+  	<div class="middle">
+	    <input id="codez" placeholder="Текст"><br>
+		<button id="code">Закодировать</button><br>
+		<input id="decodez" placeholder="Код"><br>
+		<button id="decode">Раскодировать</button><br>
+  	</div>
+  	<div class="bottomleft">
+    	<p>By GGsmou</p>
+  	</div>
 </body>
 </html>
 </html>
