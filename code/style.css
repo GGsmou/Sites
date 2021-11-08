@@ -34,13 +34,17 @@ body
 input
 {
     width: 500px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    text-align: center;
+    outline: transparent;
 }
 button 
 {
-  width: 100px;
-  height: 25px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  width: 115px;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding: 1px 1px;
   border: 2px solid #fff;
   background: transparent;
@@ -54,6 +58,15 @@ button:hover
   -4px -4px 5px 0px #fff9,
   4px 4px 5px 0px #0001;
 }
+#output{
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 544px;
+    height: 300px;
+    margin: 0;
+    overflow-y: auto;
+    word-wrap: break-word;
+    font-size: 18px;
+}
 @media (max-width: 600px)
 {
     body
@@ -63,5 +76,9 @@ button:hover
     input
     {
         width: 200px;
+    }
+    #output{
+        width: 244px;
+        height: 250px;
     }
 }

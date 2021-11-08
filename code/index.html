@@ -61,7 +61,7 @@
 		    elif textcsplit[i] == ' ': text.append('_')
 		    else: text.append('/'+str(textcsplit[i]))
 
-		InfoDialog("Answer", listToString(text))
+		document['output'].text = listToString(text)
 	document["code"].bind("click", code)
 
 
@@ -141,7 +141,7 @@
 
 		        i += jump
 
-		InfoDialog("Answer", listToString(code))
+		document['output'].text = listToString(code)
 	document["decode"].bind("click", decode)
 
 	</script>
@@ -154,6 +154,19 @@
 		<button id="code">Закодировать</button><br>
 		<input id="decodez" placeholder="Код"><br>
 		<button id="decode">Раскодировать</button><br>
+		<p id="output">...</p>
+		<button onclick="copyElementText()">Скопировать</button>
+		<script>
+			function copyElementText() {
+			    var text = document.getElementById("output").innerText;
+			    var elem = document.createElement("textarea");
+			    document.body.appendChild(elem);
+			    elem.value = text;
+			    elem.select();
+			    document.execCommand("copy");
+			    document.body.removeChild(elem);
+			}
+		</script>
   	</div>
   	<div class="bottomleft">
     	<p>By GGsmou</p>
