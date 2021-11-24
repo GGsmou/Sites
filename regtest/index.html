@@ -34,9 +34,9 @@
 
 		def on_complete(req):
 		    if req.status==200 or req.status==0:
-		        document["output"].value = req.text
+		        document["output"].text = req.text
 		    else:
-		        document["output"].value = "error "+req.text
+		        document["output"].text = "error "+req.text
 
 		def err_msg():
 		    document["output"].text = "server didn't reply after %s seconds" %timeout
