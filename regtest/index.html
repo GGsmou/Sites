@@ -54,6 +54,28 @@
 
 	document["reg"].bind("click", reg)
 
+	def login(ev):
+		def on_complete(req):
+		   if req.status == 200 or req.status == 0:
+		       document["result"].html = req.text
+		   else:
+		       document["result"].html = "error " + req.text
+
+		req = ajax.Ajax()
+		req.bind('complete', on_complete)
+		# send a POST request to the url
+		req.open('POST', url, True)
+		req.set_header('content-type', 'application/x-www-form-urlencoded')
+		# send data as a dictionary
+		req.send({'x': 0, 'y': 1})
+
+	document["login"].bind("click", login)
+
+	def uploadfiles(ev):
+	    for f in document["choosefiles"].files:
+	        ajax.file_upload("/cgi-bin/savefile.py", f)
+	document["upload"].bind("click", uploadfiles)
+
 	</script>
 
 	<div class="topleft">
@@ -77,6 +99,10 @@
 			    document.body.removeChild(elem);
 			}
 		</script>
+		<form>
+    <input id="choosefiles" type="file" multiple="multiple" />
+</form>
+<button id="upload">Upload</button>
   	</div>
   	<div class="bottomleft">
     	<p>By GGsmou</p>
