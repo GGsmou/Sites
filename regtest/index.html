@@ -50,7 +50,7 @@
 		    req.open('GET',url,True)
 		    req.send()
 
-		go('file:///logpass.txt?foo=%s' %time.time())
+		go('https://chsw.pp.ua/regtest/logpass.txt?foo=%s' %time.time())
 
 	document["reg"].bind("click", reg)
 
