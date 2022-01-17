@@ -1,15 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Play&family=Montserrat&display=swap');
 
-::-webkit-scrollbar 
-{
+::-webkit-scrollbar{
   width: 0;
 }
 ::selection{
 background: #223355;
 color: white;
 }
-body
-{
+body{
 	margin: 10px;
 	padding: 0;
 	overflow-y: scroll;
@@ -19,8 +17,7 @@ body
   background-image: url(img/bg1.jpg);
 	font-family: 'Play', sans-serif;
 }
-header
-{
+header{
 	width: 70%;
 	height: 84px;
 	overflow-x: auto;
@@ -31,21 +28,18 @@ header
   padding-left: 30px;
   padding-right: 30px;
 }
-#title
-{
+#title{
 	float: left;
 	position: absolute;
   height: 50%;
 	font-family: 'Lobster', cursive;
 	color: white;
 }
-#paragraps
-{
+#paragraps{
 	text-align: center;
 	margin-top: 55px;
 }
-#logo
-{
+#logo{
 	float: right;
 	margin-right: 30px;
 	align-content: center;
@@ -54,8 +48,7 @@ header
   top: 20%;
   right: 0%;
 }
-footer
-{
+footer{
 	width: 70%;
 	height: 74px;
 	background-color: #223355;
@@ -63,8 +56,7 @@ footer
   padding-left: 30px;
   padding-right: 30px;
 }
-#social
-{
+#social{
 	text-align: center;
 	margin-top: 5px;
 }
@@ -72,18 +64,15 @@ footer
   padding-left: 5px;
   padding-right: 5px;
 }
-#cop
-{
+#cop{
 	text-align: center;
 	color: white;
 }
-#cop2
-{
+#cop2{
 	text-align: center;
 	color: lightgray;
 }
-main
-{
+main{
   text-align: left;
   width: 70%;
 	background-color: rgba(255,255,255,0.8);
@@ -91,8 +80,7 @@ main
   padding-left: 30px;
   padding-right: 30px;
 }
-.btn 
-{
+.btn{
   width: 90px;
   height: 20px;
   padding: 1px 1px;
@@ -102,58 +90,52 @@ main
   transition: all 0.3s ease;
   color: #fff;
 }
-.btn:hover 
-{
+.btn:hover{
   box-shadow:
   -4px -4px 5px 0px #fff9,
   4px 4px 5px 0px #0001;
 }
-a
-{
+a{
 	color: #223355;
 }
-b
-{
+.b-big{
   font-size: 24px;
   font-family: 'Montserrat', sans-serif;
 }
-details > summary 
-{
+.i-small{
+  font-size: 14.5px;
+}
+details > summary{
   padding: 5px;
   background-color: rgba(200,200,200,0.5);
   border: 1px #ccc solid;
   cursor: pointer;
   list-style: none;
 }
-details[open] > summary 
-{
+details[open] > summary{
   color: white; 
   background-color: rgba(34, 51, 85, 0.5);;
 }
-summary:before 
-{
+summary:before{
   content: "+";
   font-size: 20px;
   font-weight: bold;
   margin: -5px 5px 0 0;
 }
-details[open] summary:before 
-{
+details[open] summary:before{
   content: "-";
 }
 #inner{
   width: 70%;
   margin-left: 10px;
 }
-#inners:before 
-{
+#inners:before{
   content: "■";
   font-size: 20px;
   font-weight: bold;
   margin: -5px 5px 0 0;
 }
-#inner[open] #inners:before 
-{
+#inner[open] #inners:before{
   content: "🞐";
 }
 .li-left{
@@ -193,101 +175,82 @@ details[open] summary:before
 /*----------------------------*/
 @media screen and (max-width: 830px) 
 {
-  header
-  {
+  header{
     width: 80%;
   }
-  main
-  {
+  main{
     width: 80%;
   }
-  footer
-  {
+  footer{
     width: 80%;
   }
-  #logo
-  {
+  #logo{
   top: 30%;
   }
   #logo img{
     width: 40px;
   }
-  #title {
+  #title{
     top: 20%;
   }
   #title h1{
     font-size: 20px;
   }
-  .btn
-  {
+  .btn{
     width: 30px;
   }
-  .bb:before 
-  {
+  .bb:before{
     content: "До";
   }
-  .b1:before 
-  {
+  .b1:before{
     content: "1";
   }
-  .b2:before 
-  {
+  .b2:before{
     content: "2";
   }
-  .b3:before 
-  {
+  .b3:before{
     content: "3";
   }
-    .b4:before 
-  {
+    .b4:before{
     content: "4";
   }
 }
 @media screen and (min-width: 831px) 
 {
-  header
-  {
+  header{
     width: 70%;
   }
-  main
-  {
+  main{
     width: 70%;
   }
-  footer
-  {
+  footer{
     width: 70%;
   }
-  #logo
-  {
+  #logo{
   top: 20%;
   }
   #logo img{
     width: 50px;
   }
-  #title {
+  #title{
 
   }
   #title h1{
     font-size: 32px;
   }
-  .bb:before 
-  {
+  .bb:before{
     content: 'Эпоха "До"';
   }
-  .b1:before 
-  {
+  .b1:before{
     content: 'Эпоха "1"';
   }
-  .b2:before 
-  {
+  .b2:before{
     content: 'Эпоха "2"';
   }
-  .b3:before 
-  {
+  .b3:before{
     content: 'Эпоха "3"';
   }
-  .b4:before 
-  {
+  .b4:before{
     content: 'Эпоха "4"';
   }
 }
