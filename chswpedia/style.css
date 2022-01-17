@@ -141,6 +141,24 @@ details[open] summary:before
 {
   content: "-";
 }
+#inner{
+  width: 70%;
+  margin-left: 10px;
+}
+#inners:before 
+{
+  content: "■";
+  font-size: 20px;
+  font-weight: bold;
+  margin: -5px 5px 0 0;
+}
+#inner[open] #inners:before 
+{
+  content: "🞐";
+}
+.li-left{
+  text-align: left;
+}
 .img20{
   width: 20%;
   transition: all .3s ease;
@@ -173,7 +191,7 @@ details[open] summary:before
   width: 80%;
 }
 /*----------------------------*/
-@media screen and (max-width: 720px) 
+@media screen and (max-width: 830px) 
 {
   header
   {
@@ -220,8 +238,12 @@ details[open] summary:before
   {
     content: "3";
   }
+    .b4:before 
+  {
+    content: "4";
+  }
 }
-@media screen and (min-width: 721px) 
+@media screen and (min-width: 831px) 
 {
   header
   {
@@ -263,6 +285,10 @@ details[open] summary:before
   .b3:before 
   {
     content: 'Эпоха "3"';
+  }
+  .b4:before 
+  {
+    content: 'Эпоха "4"';
   }
 }
 /*----------------------------*/
