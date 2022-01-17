@@ -141,11 +141,7 @@ details[open] summary:before{
 .li-left{
   text-align: left;
 }
-.img20{
-  width: 20%;
-  transition: all .3s ease;
-}
-.img20-30{
+.img20, .img20-30{
   width: 20%;
   transition: all .3s ease;
 }
@@ -153,16 +149,13 @@ details[open] summary:before{
   width: 30%;
   transition: all .3s ease;
 }
-.img40{
+.img40, .img40-60{
   width: 40%;
   transition: all .3s ease;
 }
-.img50{
+.img50, .img50f{
   width: 50%;
   transition: all .3s ease;
-}
-.img50f{
-  width: 50%;
 }
 .img20:hover{
   width: 50%;
@@ -175,6 +168,9 @@ details[open] summary:before{
 }
 .img40:hover{
   width: 70%;
+}
+.img40-60:hover{
+  width: 60%;
 }
 .img50:hover{
   width: 80%;
