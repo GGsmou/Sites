@@ -145,6 +145,10 @@ details[open] summary:before{
   width: 20%;
   transition: all .3s ease;
 }
+.img20-30{
+  width: 20%;
+  transition: all .3s ease;
+}
 .img30{
   width: 30%;
   transition: all .3s ease;
@@ -162,6 +166,9 @@ details[open] summary:before{
 }
 .img20:hover{
   width: 50%;
+}
+.img20-30:hover{
+  width: 30%;
 }
 .img30:hover{
   width: 60%;
