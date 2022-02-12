@@ -49,7 +49,6 @@ h1{
     margin-bottom: 20px;
     display:inline-block;
     overflow: hidden;
-    height: 230px;
     border: 5px solid #fff;
 }
 hr
@@ -62,19 +61,10 @@ hr
     body{
         font-size: 20px;
     }
-    .tim{
-        height: 200px;
-    }
     main{
         margin: 15px 0px;
     }
     h1{
         font-size: 36px;
-    }
-}
-@media (max-width: 375px)
-{
-    .tim{
-        height: 220px;
     }
 }
