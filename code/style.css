@@ -81,4 +81,8 @@ button:hover
         width: 244px;
         height: 250px;
     }
+    .bottomleft
+    {
+        width: 150px;
+    }
 }
