@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Play&family=Montserrat&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
 ::-webkit-scrollbar{
   width: 0;
 }
 ::selection{
-background: #223355;
-color: white;
+  background: #223355;
+  color: white;
 }
 body{
 	margin: 10px;
