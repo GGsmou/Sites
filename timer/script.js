@@ -1,5 +1,5 @@
 // Set the date we're counting down to
-var countDownDate = new Date("Feb 24, 2022 04:30:00").getTime();
+var countDownDate = new Date("Feb 24, 2022 04:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -17,8 +17,8 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "д " + hours + "ч "
-  + minutes + "м " + seconds + "с ";
+  document.getElementById("demo").innerHTML = days + "д " + hours + "г "
+  + minutes + "хв " + seconds + "с ";
 
   // If the count down is finished, write some text
   if (distance < 0) {
