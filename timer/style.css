@@ -36,6 +36,9 @@ hr
     margin: auto;
     width: 40%;
 }
+a{
+    color: white;
+}
 @media (max-width: 600px)
 {
     body
