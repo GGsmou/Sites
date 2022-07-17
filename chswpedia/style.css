@@ -89,9 +89,19 @@ main{
   transition: all 0.3s ease;
   color: #fff;
 }
+.blang{
+  width: 30px;
+  border: 2px solid #f5ec9d;
+  color: #f5ec9d;
+}
 .btn:hover{
   box-shadow:
   -4px -4px 5px 0px #fff9,
+  4px 4px 5px 0px #0001;
+}
+.blang:hover{
+  box-shadow:
+  -4px -4px 5px 0px #b5af76,
   4px 4px 5px 0px #0001;
 }
 a{
