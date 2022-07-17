@@ -67,8 +67,8 @@ main
 	height: 250px;
 	margin-left: 40px;
 	margin-right: 40px;
-	margin-top: 0px;
-	margin-bottom: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .pic:hover img
 {
