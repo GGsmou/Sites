@@ -245,10 +245,6 @@ details[open] summary:before
   {
     content: "Д";
   }
-  .bm:before 
-  {
-    content: "О";
-  }
 }
 @media screen and (min-width: 721px) 
 {
@@ -283,7 +279,7 @@ details[open] summary:before
   }
   .bl:before 
   {
-    content: 'Законы';
+    content: 'Закони';
   }
   .bj:before 
   {
@@ -291,11 +287,7 @@ details[open] summary:before
   }
   .bd:before 
   {
-    content: 'Дуэли';
-  }
-  .bm:before 
-  {
-    content: 'Основа';
+    content: 'Дуелі';
   }
 }
 /*----------------------------*/
