@@ -251,19 +251,19 @@ details[open] summary:before{
     font-size: 32px;
   }
   .bb:before{
-    content: 'Эпоха "До"';
+    content: 'Епоха "До"';
   }
   .b1:before{
-    content: 'Эпоха "1"';
+    content: 'Епоха "1"';
   }
   .b2:before{
-    content: 'Эпоха "2"';
+    content: 'Епоха "2"';
   }
   .b3:before{
-    content: 'Эпоха "3"';
+    content: 'Епоха "3"';
   }
   .b4:before{
-    content: 'Эпоха "4"';
+    content: 'Епоха "4"';
   }
 }
 /*----------------------------*/
