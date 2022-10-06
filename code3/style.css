@@ -87,13 +87,13 @@ body
 }
 .topleft
 {
-    flex: 4;
-    margin: 15px 0 25px 35px;
+    flex: 2;
+    margin: 15px 0 0 35px;
 }
 .bottomleft
 {
-    flex: 4;
-    margin: 25px 0 15px 35px;
+    flex: 2;
+    margin: 0 0 15px 35px;
 }
 .bottomleft p{
     align-self: flex-end;
