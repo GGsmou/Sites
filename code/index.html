@@ -146,29 +146,31 @@
 
 	</script>
 
-	<div class="topleft">
+	<div class="topleft row">
 		<p>Кодування</p>
 	</div>
-  	<div class="middle">
-	    <input id="codez" placeholder="Текст"><br>
-		<button id="code">Закодувати</button><br>
-		<input id="decodez" placeholder="Код"><br>
-		<button id="decode">Розкодувати</button><br>
-		<p id="output">...</p>
-		<button onclick="copyElementText()">Скопіювати</button>
-		<script>
-			function copyElementText() {
-			    var text = document.getElementById("output").innerText;
-			    var elem = document.createElement("textarea");
-			    document.body.appendChild(elem);
-			    elem.value = text;
-			    elem.select();
-			    document.execCommand("copy");
-			    document.body.removeChild(elem);
-			}
-		</script>
+  	<div class="middle row">
+  		<div class="wrapper">
+		    <input id="codez" placeholder="Текст"><br>
+			<button id="code">Закодувати</button><br>
+			<input id="decodez" placeholder="Код"><br>
+			<button id="decode">Розкодувати</button><br>
+			<p id="output">...</p>
+			<button onclick="copyElementText()">Скопіювати</button>
+			<script>
+				function copyElementText() {
+				    var text = document.getElementById("output").innerText;
+				    var elem = document.createElement("textarea");
+				    document.body.appendChild(elem);
+				    elem.value = text;
+				    elem.select();
+				    document.execCommand("copy");
+				    document.body.removeChild(elem);
+				}
+			</script>
+		</div>
   	</div>
-  	<div class="bottomleft">
+  	<div class="bottomleft row">
 	    <p>
 	      <a href="https://chsw.pp.ua/">Made by GGsmou</a>
 	    </p>
