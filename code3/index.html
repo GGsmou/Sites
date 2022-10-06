@@ -10,16 +10,17 @@
 </head>
 <body>
 	<div class="topleft row">
-		<p>Кодування 2</p>
+		<p>Кодування 3</p>
 	</div>
   	<div class="middle row">
   		<div class="wrapper">
-		    <input id="codez" class="in25" placeholder="Сід"><input id="codez" class="in75" placeholder="Текст"><br>
+		    <input id="codezSeed" class="in25" placeholder="Сід"><input id="codez" class="in75" placeholder="Текст"><br>
 			<button id="code">Закодувати</button><br>
 			<input id="decodez" placeholder="Код"><br>
 			<button id="decode">Розкодувати</button><br>
 			<p id="output">...</p>
-			<button onclick="copyElementText()">Скопіювати</button>
+			<button class="noSeed" onclick="copyElementTextNoSeed()">Скопіювати без сіду</button><br>
+			<button onclick="copyElementText()">Скопіювати все</button>
 			<script>
 				function copyElementText() {
 				    var text = document.getElementById("output").innerText;
@@ -30,13 +31,22 @@
 				    document.execCommand("copy");
 				    document.body.removeChild(elem);
 				}
+				function copyElementTextNoSeed() {
+				    var text = document.getElementById("output").innerText;
+				    text = text.slice(0, -17);
+				    var elem = document.createElement("textarea");
+				    document.body.appendChild(elem);
+				    elem.value = text;
+				    elem.select();
+				    document.execCommand("copy");
+				    document.body.removeChild(elem);
+				}
 			</script>
 		</div>
   	</div>
-  	<div class="bottomleft row">
-	    <p>
-	      <a href="https://chsw.pp.ua/">Made by GGsmou</a>
-	    </p>
+  	<div class="bottomleft row rowWrap">
+  		<button id="info">Інфо</button> <button id="Elist">Список смайлів</button> <button id="Slist">Список символів</button><br>
+	    <div class="column"><p><a href="https://chsw.pp.ua/">Made by GGsmou</a></p></div>
   	</div>
 
 <py-script>
@@ -205,14 +215,61 @@ def fromEmojitoSeed(emoji):
     emojisplit = split(emoji)
     return (genSeed(ALLEMOJI.index(emojisplit[0]), ALLEMOJI.index(emojisplit[1]), ALLEMOJI.index(emojisplit[2])))
 
-runButton = document.getElementById('code')
+codeButton = document.getElementById('code')
+decodeButton = document.getElementById('decode')
 
 def codeFunc(*args, **kwargs):
+	seed = Element('codezSeed').element.value
 	text = Element('codez').element.value
-	Element('output').write(text)
+
+	textsplit = split(text)
+	code = []
+
+	seed, emojiShuffleNew = shuflle(seed)
+	code.append(fromSeedtoEmoji(seed))
+
+	for i in range(len(textsplit)):
+		if textsplit[i] in ALLDIC:
+			code.append(emojiShuffleNew[ALLDIC.index(textsplit[i])])
+		else: code.append(textsplit[i])
+
+	Element('output').write(f'{listToString(code)}<br><br>seed: {seed}')
+
+def decodeFunc(*args, **kwargs):
+	code = Element('decodez').element.value
+
+	codesplit = split(code)
+	text = []
+
+	if len(codesplit) >= 3:
+		if codesplit[0] in ALLEMOJI and codesplit[1] in ALLEMOJI and codesplit[2] in ALLEMOJI:
+			seed = codesplit[0] + codesplit[1] + codesplit[2]
+			a, emojiShuffleNew = shuflle(seed)
+			seed = fromEmojitoSeed(seed)
+
+			for i in range(len(codesplit)):
+				if i != 0 and i != 1 and i != 2:
+					if codesplit[i] in ALLEMOJI:
+						emojiIndex = emojiShuffleNew.index(codesplit[i])
+
+						if 167 <= emojiIndex <= 333: emojiIndex -= 167
+						elif 333 <= emojiIndex <= 500: emojiIndex -= 334
+
+						text.append(ALLDIC[emojiIndex])
+					else:
+						text.append(codesplit[i])
+		else:
+			seed = '|NO SEED|'
+			text.append('|NO SEED| ')
+			for i in range(len(codesplit)): text.append(codesplit[i])
+
+		Element('output').write(f'{listToString(text)}<br><br>seed: {seed}')
+	else: Element('output').write('😔Занадто короткий код<br><br>seed: |NO SEED|')
 
 cc = ffi.create_proxy(codeFunc)
-runButton.addEventListener('click',cc)
+ccD = ffi.create_proxy(decodeFunc)
+codeButton.addEventListener('click',cc)
+decodeButton.addEventListener('click',ccD)
 </py-script>
 
 </body>

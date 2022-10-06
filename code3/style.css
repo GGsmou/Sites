@@ -10,10 +10,10 @@ py-script{
     height: 10px;
 }
 ::-webkit-scrollbar-track{
-    background: #6f0c34;
+    background: #000;
 }
 ::-webkit-scrollbar-thumb{
-    background: #a36e4e;
+    background: #9f8104;
     border-radius: 5px;
 }
 body
@@ -85,6 +85,11 @@ body
   flex-wrap: wrap;
   width: 100%;
 }
+.column{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
 .topleft
 {
     flex: 2;
@@ -95,8 +100,9 @@ body
     flex: 2;
     margin: 0 0 15px 35px;
 }
-.bottomleft p{
+.bottomleft button{
     align-self: flex-end;
+    margin: 5px 33px 5px 0;
 }
 .middle
 {
@@ -136,6 +142,9 @@ button:hover
   box-shadow:
   -4px -4px 5px 0px #fff9,
   4px 4px 5px 0px #0001;
+}
+.noSeed{
+    width: 145px;
 }
 #output{
     background-color: rgba(255, 255, 255, 0.1);
