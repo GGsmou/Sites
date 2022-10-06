@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Code 2</title>
+	<title>Code 3</title>
 	<link rel="shortcut icon" href="img/logo.png" type="image/png">
 	<link rel="stylesheet" href="style.css">
 	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
@@ -14,23 +14,23 @@
 	</div>
   	<div class="middle row">
   		<div class="wrapper">
-	    <input id="codez" class="in25" placeholder="Сід"><input id="codez" class="in75" placeholder="Текст"><br>
-		<button id="code">Закодувати</button><br>
-		<input id="decodez" placeholder="Код"><br>
-		<button id="decode">Розкодувати</button><br>
-		<p id="output">...</p>
-		<button onclick="copyElementText()">Скопіювати</button>
-		<script>
-			function copyElementText() {
-			    var text = document.getElementById("output").innerText;
-			    var elem = document.createElement("textarea");
-			    document.body.appendChild(elem);
-			    elem.value = text;
-			    elem.select();
-			    document.execCommand("copy");
-			    document.body.removeChild(elem);
-			}
-		</script>
+		    <input id="codez" class="in25" placeholder="Сід"><input id="codez" class="in75" placeholder="Текст"><br>
+			<button id="code">Закодувати</button><br>
+			<input id="decodez" placeholder="Код"><br>
+			<button id="decode">Розкодувати</button><br>
+			<p id="output">...</p>
+			<button onclick="copyElementText()">Скопіювати</button>
+			<script>
+				function copyElementText() {
+				    var text = document.getElementById("output").innerText;
+				    var elem = document.createElement("textarea");
+				    document.body.appendChild(elem);
+				    elem.value = text;
+				    elem.select();
+				    document.execCommand("copy");
+				    document.body.removeChild(elem);
+				}
+			</script>
 		</div>
   	</div>
   	<div class="bottomleft row">
