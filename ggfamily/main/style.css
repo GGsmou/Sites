@@ -282,3 +282,13 @@ ul{
 		height: 120px;
 	}
 }
+
+.anim{
+	transform: translateX(50px);
+	opacity: 0;
+	transition: 2s all ease;
+}
+.anim.active{
+	transform: translateX(0);
+	opacity: 1;
+}

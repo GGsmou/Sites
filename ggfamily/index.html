@@ -69,7 +69,8 @@
                 </div>
                 <h3 id="h3-text">
                     GGsmou is a nick and scenic character of a ukrainian guy
-                    Sviatoslav Holovin.
+                    Sviatoslav Holovin.<br />
+                    First used as twitch nickname back in 2017.
                 </h3>
                 <div id="header">
                     <h3>
@@ -106,19 +107,19 @@
                         <b>About</b>
                     </h3>
                 </div>
-                <h3 id="h3-text">GGkek was here</h3>
+                <h3 id="h3-text">
+                    GGsmok is an artist who makes bad and cringe covers to some
+                    popular music just for fun.
+                </h3>
                 <div id="header">
                     <h3>
                         <b>Author</b>
                     </h3>
                 </div>
                 <h3 id="h3-text">
-                    GGkek was created by GGsmou.<br />
-                    First used as placeholder for GGsmou`s twink account on
-                    minecraft server
-                    <a href="https://minecode.pp.ua/" target="_blank"
-                        >Minecode</a
-                    >.
+                    GGsmok is GGsmou`s nick for making music. Created to divide
+                    GGsmou`s from everything that done by GGsmok.<br />
+                    First used as tiktok nickname back in november of 2022.
                 </h3>
                 <div id="header">
                     <h3>
@@ -232,5 +233,24 @@
                 </div>
             </div>
         </div>
+        <script>
+            function reveal() {
+                var reveals = document.querySelectorAll(".anim");
+
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    var elementVisible = 150;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    } else {
+                        reveals[i].classList.remove("active");
+                    }
+                }
+            }
+
+            window.addEventListener("scroll", reveal);
+        </script>
     </body>
 </html>
