@@ -19,8 +19,8 @@
         <meta name="copyright" content="Made by GGsmou" />
         <title>GGfamily - group of random GG dudes</title>
     </head>
-    <body>
-        <div class="row">
+    <body onload="revealOnLoad()">
+        <div class="row anim-load">
             <div class="column">
                 <div id="logo">
                     <img src="main/img/logo.png" alt="" />
@@ -37,8 +37,8 @@
             <div class="column"></div>
         </div>
         <hr />
-        <h2>GGsmou</h2>
-        <div class="row">
+        <h2 class="anim-load">GGsmou</h2>
+        <div class="row anim-load">
             <div class="column">
                 <div id="header">
                     <h3>
@@ -99,8 +99,8 @@
             </div>
         </div>
         <hr />
-        <h2>GGsmok</h2>
-        <div class="row">
+        <h2 class="anim">GGsmok</h2>
+        <div class="row anim">
             <div class="column">
                 <div id="header">
                     <h3>
@@ -154,8 +154,8 @@
             </div>
         </div>
         <hr />
-        <h2>GGkek</h2>
-        <div class="row">
+        <h2 class="anim">GGkek</h2>
+        <div class="row anim">
             <div class="column">
                 <div id="header">
                     <h3>
@@ -200,7 +200,7 @@
             </div>
         </div>
         <hr />
-        <div class="row">
+        <div class="row anim">
             <div class="column">
                 <div id="logo-footer">
                     <a href="https://minecode.pp.ua/"
@@ -235,21 +235,25 @@
         </div>
         <script>
             function reveal() {
-                var reveals = document.querySelectorAll(".anim");
+                let reveals = document.querySelectorAll(".anim");
 
-                for (var i = 0; i < reveals.length; i++) {
-                    var windowHeight = window.innerHeight;
-                    var elementTop = reveals[i].getBoundingClientRect().top;
-                    var elementVisible = 150;
+                for (let i = 0; i < reveals.length; i++) {
+                    let windowHeight = window.innerHeight;
+                    let elementTop = reveals[i].getBoundingClientRect().top;
+                    let elementVisible = 50;
 
                     if (elementTop < windowHeight - elementVisible) {
                         reveals[i].classList.add("active");
-                    } else {
-                        reveals[i].classList.remove("active");
                     }
                 }
             }
+            function revealOnLoad() {
+                let reveals = document.querySelectorAll(".anim-load");
 
+                for (let i = 0; i < reveals.length; i++) {
+                    reveals[i].classList.add("active");
+                }
+            }
             window.addEventListener("scroll", reveal);
         </script>
     </body>
