@@ -142,7 +142,7 @@ ul{
 	width: 640px;
 	height: 320px;
 }
-.anim, .anim-load{
+.anim{
 	transform: translateX(2.2rem);
 	opacity: 0;
 	transition: 1.3s all ease;

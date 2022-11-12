@@ -19,8 +19,8 @@
         <meta name="copyright" content="Made by GGsmou" />
         <title>GGfamily - group of random GG dudes</title>
     </head>
-    <body onload="revealOnLoad()">
-        <div class="row anim-load">
+    <body onload="reveal()">
+        <div class="row anim">
             <div class="column">
                 <div id="logo">
                     <img src="main/img/logo.png" alt="" />
@@ -38,8 +38,8 @@
         </div>
         <hr />
         <a name="GGsmou"></a>
-        <h2 class="anim-load">GGsmou</h2>
-        <div class="row anim-load">
+        <h2 class="anim">GGsmou</h2>
+        <div class="row anim">
             <div class="column">
                 <div id="header">
                     <h3>
@@ -239,13 +239,6 @@
                     if (elementTop < windowHeight - elementVisible) {
                         reveals[i].classList.add("active");
                     }
-                }
-            }
-            function revealOnLoad() {
-                let reveals = document.querySelectorAll(".anim-load");
-
-                for (let i = 0; i < reveals.length; i++) {
-                    reveals[i].classList.add("active");
                 }
             }
             window.addEventListener("scroll", reveal);
