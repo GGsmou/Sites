@@ -120,7 +120,7 @@ ul{
 	width: 60px;
 }
 #logo-footer h4{
-	margin: 0;
+	margin: 0 0 0 10px;
 }
 #title-text{
 	margin-right: 100px;
@@ -219,6 +219,9 @@ ul{
 	#logo-footer img{
 		width: 50px;
 	}
+	#logo-footer h4{
+		margin: 0 0 0 7px;
+	}
 	#title-text{
 		margin-right: 50px;
 	}
@@ -274,6 +277,9 @@ ul{
 	}
 	#logo-footer img{
 		width: 35px;
+	}
+	#logo-footer h4{
+		margin: 0 0 0 5px;
 	}
 	#title-text{
 		margin-right: 5px;
