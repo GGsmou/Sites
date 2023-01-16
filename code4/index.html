@@ -95,7 +95,7 @@ def codeFunc(*args, **kwargs):
             code.append(textsplit[0])
     else:
         for i in range(len(textsplit)):
-            seed = textsplit[-1] if textsplit[i] == textsplit[0] else code[i - 1]
+            seed = textsplit[-1] if i == 0 else code[i - 1]
             dicShuffleNew = shuflle(seed)
 
             if textsplit[i] in ALLDIC:
@@ -121,7 +121,7 @@ def decodeFunc(*args, **kwargs):
             text.append(codesplit[0])
     else:
         for i in range(len(codesplit)):
-            seed = text[0] if codesplit[i] == codesplit[-1] else codesplit[i + 1]
+            seed = text[0] if i == len(codesplit) - 1 else codesplit[i + 1]
             dicShuffleNew = shuflle(seed)
 
             if codesplit[i] in ALLDIC:
