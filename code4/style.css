@@ -2,7 +2,7 @@
 {
     display: none
 }
-py-script{
+py-script, .alert-banner, .py-warning, py-terminal{
     display: none;
 }
 ::-webkit-scrollbar{
