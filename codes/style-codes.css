@@ -16,7 +16,7 @@ body
 {
     height: 100svh;
     margin: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     background-size: cover;
     background-attachment: fixed;
@@ -87,12 +87,14 @@ body
 .topleft
 {
     flex: 2;
-    margin: 15px 0 0 35px;
+}
+.topleft p
+{
+    margin: 55px 0px 25px 55px;
 }
 .bottomleft
 {
     flex: 2;
-    margin: 0 0 15px 35px;
 }
 .bottomleft button{
     align-self: flex-end;
@@ -100,6 +102,10 @@ body
 }
 .bl-parag{
     align-self: flex-end;
+    margin: 25px 0px 55px 55px;
+}
+.bl-wrap{
+    margin: 25px 0px 55px 55px;
 }
 .middle
 {
