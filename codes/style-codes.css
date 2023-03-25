@@ -168,6 +168,10 @@ a{
 }
 @media (max-width: 600px)
 {
+    .topleft p
+    {
+        margin-top: 35px;
+    }
     .topleft p, .bl-parag, .bl-wrap
     {
         margin-left: 35px;
