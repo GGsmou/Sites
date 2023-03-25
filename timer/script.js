@@ -1,28 +1,30 @@
-// Set the date we're counting down to
-var countDownDate = new Date("Feb 24, 2022 04:00:00").getTime();
+const countDate = new Date("Feb 24, 2022 04:00:00").getTime();
+const countFrom = true;
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+let x = setInterval(function () {
+    let now = new Date().getTime();
 
-  // Get todays date and time
-  var now = new Date().getTime();
+    let distance = countFrom ? now - countDate : countDate - now;
 
-  // Find the distance between now an the count down date
-  var distance = now - countDownDate;
+    let years = 0;
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    while (days >= 365) {
+        days -= 365;
+        years++;
+    }
+    let years_text = "";
 
-  // Display the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "д " + hours + "г "
-  + minutes + "хв " + seconds + "с ";
+    let text = `${years_text}${days}д ${hours}г ${minutes}хв ${seconds}с`;
+    if (years > 0) text = `${years}р ` + text;
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "Время вышло";
-  }
+    document.getElementById("output").innerHTML = text;
+
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("output").innerHTML = "Час вийшов";
+    }
 }, 1000);
