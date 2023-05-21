@@ -1,7 +1,20 @@
 const url = new URL(window.location.href);
 const paramsGet = new URLSearchParams(url.search);
-const params = {};
+const params = { shortFormat: false };
 let changeUrl = false;
+let countDate;
+
+function convertDate(date) {
+  const dateArr = date.split(' ')[0].split('.');
+  return `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}T${date.split(' ')[1]}`;
+}
+
+function fillData() {
+  document.getElementById('textTop').innerHTML = params.textTop;
+  document.getElementById('text').innerHTML = `${params.text}:`;
+
+  countDate = new Date(convertDate(params.date)).getTime();
+}
 
 function validateParams() {
   paramsGet.has('date')
@@ -20,30 +33,46 @@ function validateParams() {
   paramsGet.has('text')
     ? (params.text = paramsGet.get('text'))
     : ((params.text = 'Геній народився'), (changeUrl = true));
+
+  changeUrl
+    ? (window.location = `${
+        window.location.href.split('?')[0]
+      }?date=${params.date.split(' ').join('+')}&from=${
+        params.from
+      }&textTop=${params.textTop.split(' ').join('+')}&text=${params.text
+        .split(' ')
+        .join('+')}`)
+    : null;
+
+  params.from = params.from === 'true' ? true : false;
+
+  fillData();
 }
-validateParams();
 
-changeUrl
-  ? (window.location = `${window.location.href.split('?')[0]}?date=${
-      params.date
-    }&from=${params.from}&textTop=${params.textTop}&text=${params.text}`)
-  : null;
+function shortFormat() {
+  params.date = paramsGet.get('d');
 
-document.getElementById('textTop').innerHTML = params.textTop;
-document.getElementById('text').innerHTML = `${params.text}:`;
+  params.from =
+    new Date().getTime() > new Date(convertDate(params.date)).getTime()
+      ? true
+      : false;
 
-const dateArr = params.date.split(' ')[0].split('.');
-const countDateText = `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}T${
-  params.date.split(' ')[1]
-}`;
-const countFrom = params.from === 'true' ? true : false;
+  params.textTop = params.from
+    ? `Taймер з ${params.date}`
+    : `Taймер до ${params.date}`;
 
-const countDate = new Date(countDateText).getTime();
+  params.text = params.from ? 'Вже пройшло' : 'До закінчення';
+  params.shortFormat = true;
+
+  fillData();
+}
+
+paramsGet.has('d') ? shortFormat() : validateParams();
 
 let x = setInterval(function () {
   let now = new Date().getTime();
 
-  let distance = countFrom ? now - countDate : countDate - now;
+  let distance = params.from ? now - countDate : countDate - now;
 
   let years = 0;
   let days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -62,8 +91,11 @@ let x = setInterval(function () {
 
   document.getElementById('output').innerHTML = text;
 
-  if (distance < 0) {
+  if (distance < 0 && !params.shortFormat) {
     clearInterval(x);
     document.getElementById('output').innerHTML = 'Час вийшов';
+  }
+  if (distance <= 0 && params.shortFormat) {
+    shortFormat();
   }
 }, 1000);

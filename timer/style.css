@@ -16,6 +16,7 @@ body
     position: absolute;
     top: 0;
     left: 16px;
+    width: 90%;
 }
 .bottomleft
 {
@@ -30,11 +31,12 @@ body
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 90%;
 }
 hr
 {
     margin: auto;
-    width: 40%;
+    width: clamp(180px, 40%, 400px);
 }
 a{
     color: white;
