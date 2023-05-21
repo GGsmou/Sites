@@ -70,6 +70,11 @@ function shortFormat() {
 paramsGet.has('d') ? shortFormat() : validateParams();
 
 let x = setInterval(function () {
+  if (params.date === '5.0') {
+    document.getElementById('output').innerHTML = 'Завтра';
+    return;
+  }
+
   let now = new Date().getTime();
 
   let distance = params.from ? now - countDate : countDate - now;
