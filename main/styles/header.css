@@ -38,6 +38,7 @@
 
   border-radius: 2px;
   background: var(--color-white);
+  pointer-events: none;
 
   transition: width .3s ease;
 }

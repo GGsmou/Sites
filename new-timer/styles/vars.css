@@ -1,0 +1,4 @@
+html {
+  --color-yellow: hsl(44, 80%, 50%);
+  --color-white: hsl(0, 0%, 95%);
+}

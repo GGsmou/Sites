@@ -1,0 +1,16 @@
+.middle {
+  margin: auto;
+
+  text-align: center;
+}
+
+
+@media (width <= 500px) {
+  .middle__title {
+    font-size: 30px;
+  }
+
+  .middle__output {
+    font-size: 20px;
+  }
+}

@@ -58,7 +58,7 @@
   margin: 10px 0 5px 180px;
 }
 
-@media (max-width: 600px)
+@media (width <= 600px)
 {
   .input {
     width: 200px;

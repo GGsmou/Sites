@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timer</title>
-    <link rel="shortcut icon" href="img/logo.png" type="image/png" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <meta
       name="description"
       content="В кінці посилання додай: ?d=24.06.2005+00:00:00 || Детальна конфігурація: ?date=24.06.2005+00:00:00&from=true&textTop=Таймер+з+дня&text=Заміни+from+на+false+щоб+таймер+був+до+дня || Якщо написати date=5.0 таймер заміниться на Завтра"
@@ -14,22 +14,19 @@
       itemprop="description"
       content="В кінці посилання додай: ?d=24.06.2005+00:00:00 || Детальна конфігурація: ?date=24.06.2005+00:00:00&from=true&textTop=Таймер+з+дня&text=Заміни+from+на+false+щоб+таймер+був+до+дня || Якщо написати date=5.0 таймер заміниться на Завтра"
     />
+
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="topleft">
-      <p id="textTop"></p>
-    </div>
+    <h2 class="title" id="textTop"></h2>
+
     <div class="middle">
-      <h1 id="text"></h1>
-      <hr />
-      <p id="output">0</p>
-      <hr />
+      <h1 class="middle__title" id="text"></h1>
+      <hr class="hr" />
+      <p id="output" class="middle__output">0</p>
+      <hr class="hr" />
     </div>
-    <div class="bottomleft">
-      <p>
-        <a href="https://chsw.pp.ua/">Made by GGsmou</a>
-      </p>
-    </div>
-    <script src="script.js"></script>
+
+    <a href="https://chsw.pp.ua/" class="link">Made by GGsmou</a>
   </body>
 </html>

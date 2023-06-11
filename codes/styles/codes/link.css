@@ -8,6 +8,7 @@
   font-size: 24px;
   color: inherit;
   text-decoration: inherit;
+  font-family: 'Merriweather Sans', sans-serif;
 
   transition: color .3s ease;
 }
