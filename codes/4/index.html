@@ -1,159 +1,148 @@
 <!DOCTYPE html>
 <html lang="ua">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Code 4</title>
-	<link rel="shortcut icon" href="../img/logos/4.png" type="image/png">
-	<link rel="stylesheet" href="../style-codes.css">
-	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
-</head>
-<style>
-	::-webkit-scrollbar-track
-	{
-    background: #222424;
-	}
-	::-webkit-scrollbar-thumb
-	{
-		background: #6a6969;
-	}
-	body
-	{
-		background-image: url(../img/bgs/4.jpg);
-	}
-</style>
-<body>
-	<div class="topleft row">
-		<p>Кодування 4 || Рандом</p>
-	</div>
-  	<div class="middle row">
-  		<div class="wrapper">
-		  <input id="codez" placeholder="Текст"><br>
-			<button id="code">Закодувати</button><br>
-			<input id="decodez" placeholder="Код"><br>
-			<button id="decode">Розкодувати</button><br>
-			<p id="output">...</p>
-			<button onclick="copyElementText()">Скопіювати</button>
-			<script>
-				function copyElementText() {
-				    var text = document.getElementById("output").innerText;
-				    var elem = document.createElement("textarea");
-				    document.body.appendChild(elem);
-				    elem.value = text;
-				    elem.select();
-				    document.execCommand("copy");
-				    document.body.removeChild(elem);
-				}
-			</script>
-		</div>
-  	</div>
-  	<div class="bottomleft row">
-	    <p class="bl-parag">
-	      <a href="https://chsw.pp.ua/codes/">Made by GGsmou</a>
-	    </p>
-  	</div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code 4</title>
+    <link rel="shortcut icon" href="../img/logos/4.png" type="image/png">
+    <link rel="stylesheet" href="../styles/codes/style.css">
 
-<py-script>
-import asyncio
-from pyodide import ffi
-import random
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  </head>
 
-ALLDIC = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-           'w', 'x', 'y', 'z', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
-           'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ґ', 'є', 'і', 'ї', 'A', 'B', 'C',
-           'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-           'Z', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
-           'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'Ґ', 'Є', 'І', 'Ї', '!', '"', '#', '$', '%', '&',
-           "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '`', '{',
-           '|', '}', '~', '№', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
+  <style>
+    ::-webkit-scrollbar-thumb {
+      background: hsl(0, 0%, 39%);
+    }
 
-dicShuffle =  ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-           'w', 'x', 'y', 'z', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
-           'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ґ', 'є', 'і', 'ї', 'A', 'B', 'C',
-           'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-           'Z', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
-           'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'Ґ', 'Є', 'І', 'Ї', '!', '"', '#', '$', '%', '&',
-           "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '`', '{',
-           '|', '}', '~', '№', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(0, 0%, 32%);
+    }
 
-num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    body {
+      background-color: hsl(0, 0%, 49%);
+    }
+  </style>
 
-def split(s): return [char for char in s]
+  <body>
+    <h1 class="title">Кодування 4 || Рандом</h1>
 
-def listToString(s):
-    str1 = ""
-    for ele in s:
-        str1 += ele
-    return str1
+    <div class="middle">
+      <div class="middle__wrapper">
+        <input id="codez" placeholder="Текст" class="input"><br>
+        <button id="code" class="button">Закодувати</button><br>
 
-def shuflle(seed):
-    dicShuffleNew = dicShuffle[:]
-    random.Random(seed).shuffle(dicShuffleNew)
-    return (dicShuffleNew)
+        <input id="decodez" placeholder="Код" class="input"><br>
+        <button id="decode" class="button">Розкодувати</button><br>
+      
+        <p id="output" class="output">...</p>
+        <button onclick="copyElementText()" class="button">Скопіювати</button>
+      </div>
+    </div>
+    
+    <a class="link" href="https://chsw.pp.ua/codes/">Made by GGsmou</a>
+    
+    <script src="../copy.js"></script>
 
-codeButton = document.getElementById('code')
-decodeButton = document.getElementById('decode')
+    <py-script>
+    import asyncio
+    from pyodide import ffi
+    import random
 
-def codeFunc(*args, **kwargs):
-    text = Element('codez').element.value
+    ALLDIC = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+              'w', 'x', 'y', 'z', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
+              'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ґ', 'є', 'і', 'ї', 'A', 'B', 'C',
+              'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+              'Z', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
+              'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'Ґ', 'Є', 'І', 'Ї', '!', '"', '#', '$', '%', '&',
+              "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '`', '{',
+              '|', '}', '~', '№', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
 
-    textsplit = split(text)
-    code = []
+    dicShuffle =  ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+              'w', 'x', 'y', 'z', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
+              'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ґ', 'є', 'і', 'ї', 'A', 'B', 'C',
+              'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+              'Z', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
+              'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'Ґ', 'Є', 'І', 'Ї', '!', '"', '#', '$', '%', '&',
+              "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '`', '{',
+              '|', '}', '~', '№', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
 
-    if len(textsplit) == 1:
-        dicShuffleNew = shuflle("ChSW")
+    num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-        if textsplit[0] in ALLDIC:
-            code.append(dicShuffleNew[ALLDIC.index(textsplit[0])])
-        else:
-            code.append(textsplit[0])
-    else:
-        for i in range(len(textsplit)):
-            seed = textsplit[-1] if i == 0 else code[i - 1]
-            dicShuffleNew = shuflle(seed)
+    def split(s): return [char for char in s]
 
-            if textsplit[i] in ALLDIC:
-                code.append(dicShuffleNew[ALLDIC.index(textsplit[i])])
+    def listToString(s):
+        str1 = ""
+        for ele in s:
+            str1 += ele
+        return str1
+
+    def shuflle(seed):
+        dicShuffleNew = dicShuffle[:]
+        random.Random(seed).shuffle(dicShuffleNew)
+        return (dicShuffleNew)
+
+    codeButton = document.getElementById('code')
+    decodeButton = document.getElementById('decode')
+
+    def codeFunc(*args, **kwargs):
+        text = Element('codez').element.value
+
+        textsplit = split(text)
+        code = []
+
+        if len(textsplit) == 1:
+            dicShuffleNew = shuflle("ChSW")
+
+            if textsplit[0] in ALLDIC:
+                code.append(dicShuffleNew[ALLDIC.index(textsplit[0])])
             else:
-                code.append(textsplit[i])
-
-    Element('output').write(f'{listToString(code)}')
-
-def decodeFunc(*args, **kwargs):
-    code = Element('decodez').element.value
-
-    codesplit = split(code)
-    codesplit = [i for i in codesplit[::-1]]
-    text = []
-
-    if len(codesplit) == 1:
-        dicShuffleNew = shuflle("ChSW")
-
-        if codesplit[0] in ALLDIC:
-            text.append(ALLDIC[dicShuffleNew.index(codesplit[0])])
+                code.append(textsplit[0])
         else:
-            text.append(codesplit[0])
-    else:
-        for i in range(len(codesplit)):
-            seed = text[0] if i == len(codesplit) - 1 else codesplit[i + 1]
-            dicShuffleNew = shuflle(seed)
+            for i in range(len(textsplit)):
+                seed = textsplit[-1] if i == 0 else code[i - 1]
+                dicShuffleNew = shuflle(seed)
 
-            if codesplit[i] in ALLDIC:
-                text.append(ALLDIC[dicShuffleNew.index(codesplit[i])])
+                if textsplit[i] in ALLDIC:
+                    code.append(dicShuffleNew[ALLDIC.index(textsplit[i])])
+                else:
+                    code.append(textsplit[i])
+
+        Element('output').write(f'{listToString(code)}')
+
+    def decodeFunc(*args, **kwargs):
+        code = Element('decodez').element.value
+
+        codesplit = split(code)
+        codesplit = [i for i in codesplit[::-1]]
+        text = []
+
+        if len(codesplit) == 1:
+            dicShuffleNew = shuflle("ChSW")
+
+            if codesplit[0] in ALLDIC:
+                text.append(ALLDIC[dicShuffleNew.index(codesplit[0])])
             else:
-                text.append(codesplit[i])
+                text.append(codesplit[0])
+        else:
+            for i in range(len(codesplit)):
+                seed = text[0] if i == len(codesplit) - 1 else codesplit[i + 1]
+                dicShuffleNew = shuflle(seed)
 
-    text = [i for i in text[::-1]]
+                if codesplit[i] in ALLDIC:
+                    text.append(ALLDIC[dicShuffleNew.index(codesplit[i])])
+                else:
+                    text.append(codesplit[i])
 
-    Element('output').write(f'{listToString(text)}')
+        text = [i for i in text[::-1]]
 
-cc = ffi.create_proxy(codeFunc)
-ccD = ffi.create_proxy(decodeFunc)
+        Element('output').write(f'{listToString(text)}')
 
-codeButton.addEventListener('click',cc)
-decodeButton.addEventListener('click',ccD)
-</py-script>
+    cc = ffi.create_proxy(codeFunc)
+    ccD = ffi.create_proxy(decodeFunc)
 
-</body>
-</html>
+    codeButton.addEventListener('click',cc)
+    decodeButton.addEventListener('click',ccD)
+    </py-script>
+  </body>
 </html>

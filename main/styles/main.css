@@ -1,0 +1,44 @@
+.main {
+	display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  margin: 100px 50px;
+}
+
+.main__link {
+  border-radius: 50%;
+  text-decoration: inherit;
+  color: inherit;
+
+  transition: transform .3s ease;
+}
+
+.main__link-cont {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 50px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+
+  border-radius: 50%;
+  border: 5px solid var(--color-white);
+}
+
+.main__link:hover {
+  transform: scale(1.1);
+}
+
+.main__link-cont--timer {
+  background-color: hsl(295, 61%, 20%);
+}
+
+.main__link-cont--codes {
+  background-color: hsl(225, 61%, 15%);
+}

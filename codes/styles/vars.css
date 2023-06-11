@@ -1,0 +1,9 @@
+html {
+  --color-bg: hsl(229, 41%, 18%);
+
+  --color-yellow: hsl(44, 80%, 50%);
+  --color-white: hsl(0, 0%, 95%);
+
+  --color-scrollbar: hsl(225, 61%, 10%);
+  --color-scrollbar-hover: hsl(225, 61%, 7%);
+}

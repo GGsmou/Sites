@@ -1,303 +1,302 @@
 <!DOCTYPE html>
 <html lang="ua">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code 3</title>
-    <link rel="shortcut icon" href="../img/logos/3.png" type="image/png">
-    <link rel="stylesheet" href="../style-codes.css">
+    <link rel="shortcut icon" href="../img/logos/3.png" type="image/png" />
+    <link rel="stylesheet" href="../styles/codes/style.css" />
+
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-</head>
-<style>
-	::-webkit-scrollbar-track
-	{
-    background: #000;
-	}
-	::-webkit-scrollbar-thumb
-	{
-		background: #9f8104;
-	}
-	body
-	{
-		background-image: url(../img/bgs/3.jpg);
-	}
-</style>
-<body>
-    <div class="topleft row">
-        <p>Кодування 3 || Емодзі</p>
+  </head>
+
+  <style>
+    html {
+      --color-yellow: hsl(43, 96%, 24%) !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: hsl(43, 96%, 31%);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(43, 96%, 24%);
+    }
+
+    body {
+      background-color: hsl(43, 96%, 41%);
+    }
+  </style>
+
+  <body>
+    <h1 class="title">Кодування 3 || Емодзі</h1>
+
+    <div class="middle">
+      <div class="middle__wrapper">
+        <input id="codezSeed" class="input input--25" placeholder="Сід" /><input id="codez" class="input input--75" placeholder="Текст"/><br />
+        <button id="code" class="button">Закодувати</button><br>
+
+        <input id="decodez" placeholder="Код" class="input"><br>
+        <button id="decode" class="button">Розкодувати</button><br>
+
+        <p id="output" class="output"><span>...</span></p>
+        <p id="output-seed" class="output output--seed">seed: |NO SEED|</p>
+        <button onclick="copyElementText()" class="button">Скопіювати</button>
+      </div>
     </div>
-      <div class="middle row">
-          <div class="wrapper">
-            <input id="codezSeed" class="in25" placeholder="Сід"><input id="codez" class="in75" placeholder="Текст"><br>
-            <button id="code">Закодувати</button><br>
-            <input id="decodez" placeholder="Код"><br>
-            <button id="decode">Розкодувати</button><br>
-            <p id="output"><span>...</span></p>
-            <p id="output-seed">seed: |NO SEED|</p>
-            <button onclick="copyElementText()">Скопіювати</button>
-            <script>
-                function copyElementText() {
-                    var text = document.getElementById("output").innerText;
-                    var elem = document.createElement("textarea");
-                    document.body.appendChild(elem);
-                    elem.value = text;
-                    elem.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(elem);
-                }
-            </script>
-        </div>
-      </div>
-      <div class="bottomleft row">
-        <div class="bl-wrap row">
-          <button id="info">Інфо</button> <button id="Elist">Список смайлів</button> <button id="Slist">Список символів</button><br>
-        
-        <div class="column"><p><a href="https://chsw.pp.ua/codes/">Made by GGsmou</a></p></div>
-        </div>
+
+    <div class="bottom">
+      <div class="bottom__wrapper">
+        <button class="button" id="info">Інфо</button>
+        <button class="button" id="Elist">Список смайлів</button>
+        <button class="button" id="Slist">Список символів</button>
       </div>
 
-<py-script>
-import asyncio
-from pyodide import ffi
-import random
+      <a class="link" href="https://chsw.pp.ua/codes/">Made by GGsmou</a>
+    </div>
 
-ALLDIC = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-           'w', 'x', 'y', 'z', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
-           'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ґ', 'є', 'і', 'ї', 'A', 'B', 'C',
-           'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-           'Z', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
-           'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'Ґ', 'Є', 'І', 'Ї', '!', '"', '#', '$', '%', '&',
-           "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '`', '{',
-           '|', '}', '~', '№', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
+    <script src="../copy.js"></script>
 
-ALLEMOJI = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙',
-            '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁',
-            '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥',
-            '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴',
-            '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩',
-            '👻', '💀', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '🤚', '🖐', '✋', '🖖', '👌',
-            '🤏', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '🐔', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌',
-            '👐', '🤲', '🤝', '🙏', '💅', '🤳', '💪', '🦾', '🦵', '🦿', '🦶', '👣', '👂', '🦻', '👃', '🧠', '🦷', '🦴', '👀',
-            '👁', '👅', '👄', '💋', '🌂', '🧵', '🧶', '👓', '🕶', '🥽', '🥼', '🦺', '👔', '👕', '👖', '🧣', '🧤', '🧥', '🧦',
-            '👗', '👘', '🥻', '🩱', '🩲', '🩳', '👙', '👚', '👛', '👜', '👝', '🎒', '👞', '👟', '🥾', '🥿', '👠', '👡', '🩰',
-            '👢', '👑', '👒', '🎩', '🎓', '🧢', '⛑', '💄', '💍', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒',
-            '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🥬', '🥒', '🌶', '🌽', '🥕', '🧄', '🧅', '🥔', '🍠', '🥐',
-            '🥯', '🍞', '🥖', '🥨', '🧀', '🥚', '🍳', '🧈', '🥞', '🏀', '🏈', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓',
-            '🏸', '🚕', '🚙', '🚌', '🚎', '🏎', '🚓', '🚑', '🚒', '🚐', '🚚', '🚛', '📱',  '📲', '💻', '🖥', '🖨', '🖱', '🖲',
-            '🕹', '🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽', '🎞', '📞', '📟', '📠', '📺', '📻', '🎙', '🎚',
-            '🎛', '🧭', '⏱', '⏲', '⏰', '🕰', '⏳', '📡', '🔋', '🔌', '💡', '🔦', '🕯', '🪔', '🧯', '🛢', '💸', '💵', '💴', '💶',
-            '💷', '💰', '💳', '💎', '🧰', '🔧', '🔨', '⚒', '🛠', '⛏', '🔩', '🧱', '⛓', '🧲', '🔫', '💣', '🧨', '🪓', '🔪',
-            '🗡', '🛡', '🚬', '🏺', '🔮', '📿', '🧿', '💈', '🔭', '🔬', '🕳', '🩹', '🩺', '💊', '💉', '🩸', '🧬', '🦠', '🧫',
-            '🧪', '🌡', '🧹', '🧺', '🧻', '🚽', '🚰', '🚿', '🛁', '🛀', '🧼', '🪒', '🧽', '🧴', '🛎', '🔑', '🗝', '🚪', '🪑',
-            '🛋', '🛏', '🛌', '🧸', '🖼', '🛍', '🛒', '🎁', '🎈', '🎏', '🎀', '🎊', '🎉', '🎎', '🏮', '🎐', '🧧', '📩', '📨', '📧',
-            '💌', '📥', '📤', '📦', '🏷', '📪', '📫', '📬', '📭', '📮', '📯', '📜', '📃', '📄', '📑', '🧾', '📊', '📈', '📉',
-            '🗒', '🗓', '📆', '📅', '🗑', '📇', '🗃', '🗳', '🗄', '📋', '📁', '📂', '🗂', '🗞', '📰', '📓', '📔', '📒', '📕', '📗',
-            '📘', '📙', '📚', '📖', '🔖', '🧷', '🔗', '📎', '🖇', '📐', '📏', '🧮', '📌', '📍', '🖊', '🖋', '🖌', '🖍', '📝', '🔍',
-            '🔎', '🔏', '🔐', '🔒', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '💕', '💞', '💓', '💗', '💖', '💘',
-            '💝', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '🔺', '🔻', '🔸', '🔹', '🔶', '🟧', '🟨', '🟩', '🟦', '🟪', '🏴', '🏁', '🚩',
-            '🚧', '🚦', '🚥', '🗺', '🗿', '🗽', '🗼', '🗻', '🏕', '🏀', '🍁', '🍄', '🐚', '🪐', '🌝', '🌚', '☄', '💥', '🔥', '🐷', '🐸']
+    <py-script>
+    import asyncio
+    from pyodide import ffi
+    import random
 
-emojiShuffle = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙',
-            '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁',
-            '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥',
-            '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴',
-            '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩',
-            '👻', '💀', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '🤚', '🖐', '✋', '🖖', '👌',
-            '🤏', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '🐔', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌',
-            '👐', '🤲', '🤝', '🙏', '💅', '🤳', '💪', '🦾', '🦵', '🦿', '🦶', '👣', '👂', '🦻', '👃', '🧠', '🦷', '🦴', '👀',
-            '👁', '👅', '👄', '💋', '🌂', '🧵', '🧶', '👓', '🕶', '🥽', '🥼', '🦺', '👔', '👕', '👖', '🧣', '🧤', '🧥', '🧦',
-            '👗', '👘', '🥻', '🩱', '🩲', '🩳', '👙', '👚', '👛', '👜', '👝', '🎒', '👞', '👟', '🥾', '🥿', '👠', '👡', '🩰',
-            '👢', '👑', '👒', '🎩', '🎓', '🧢', '⛑', '💄', '💍', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒',
-            '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🥬', '🥒', '🌶', '🌽', '🥕', '🧄', '🧅', '🥔', '🍠', '🥐',
-            '🥯', '🍞', '🥖', '🥨', '🧀', '🥚', '🍳', '🧈', '🥞', '🏀', '🏈', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓',
-            '🏸', '🚕', '🚙', '🚌', '🚎', '🏎', '🚓', '🚑', '🚒', '🚐', '🚚', '🚛', '📱',  '📲', '💻', '🖥', '🖨', '🖱', '🖲',
-            '🕹', '🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽', '🎞', '📞', '📟', '📠', '📺', '📻', '🎙', '🎚',
-            '🎛', '🧭', '⏱', '⏲', '⏰', '🕰', '⏳', '📡', '🔋', '🔌', '💡', '🔦', '🕯', '🪔', '🧯', '🛢', '💸', '💵', '💴', '💶',
-            '💷', '💰', '💳', '💎', '🧰', '🔧', '🔨', '⚒', '🛠', '⛏', '🔩', '🧱', '⛓', '🧲', '🔫', '💣', '🧨', '🪓', '🔪',
-            '🗡', '🛡', '🚬', '🏺', '🔮', '📿', '🧿', '💈', '🔭', '🔬', '🕳', '🩹', '🩺', '💊', '💉', '🩸', '🧬', '🦠', '🧫',
-            '🧪', '🌡', '🧹', '🧺', '🧻', '🚽', '🚰', '🚿', '🛁', '🛀', '🧼', '🪒', '🧽', '🧴', '🛎', '🔑', '🗝', '🚪', '🪑',
-            '🛋', '🛏', '🛌', '🧸', '🖼', '🛍', '🛒', '🎁', '🎈', '🎏', '🎀', '🎊', '🎉', '🎎', '🏮', '🎐', '🧧', '📩', '📨', '📧',
-            '💌', '📥', '📤', '📦', '🏷', '📪', '📫', '📬', '📭', '📮', '📯', '📜', '📃', '📄', '📑', '🧾', '📊', '📈', '📉',
-            '🗒', '🗓', '📆', '📅', '🗑', '📇', '🗃', '🗳', '🗄', '📋', '📁', '📂', '🗂', '🗞', '📰', '📓', '📔', '📒', '📕', '📗',
-            '📘', '📙', '📚', '📖', '🔖', '🧷', '🔗', '📎', '🖇', '📐', '📏', '🧮', '📌', '📍', '🖊', '🖋', '🖌', '🖍', '📝', '🔍',
-            '🔎', '🔏', '🔐', '🔒', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '💕', '💞', '💓', '💗', '💖', '💘',
-            '💝', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '🔺', '🔻', '🔸', '🔹', '🔶', '🟧', '🟨', '🟩', '🟦', '🟪', '🏴', '🏁', '🚩',
-            '🚧', '🚦', '🚥', '🗺', '🗿', '🗽', '🗼', '🗻', '🏕', '🏀', '🍁', '🍄', '🐚', '🪐', '🌝', '🌚', '☄', '💥', '🔥', '🐷', '🐸']
+    ALLDIC = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+              'w', 'x', 'y', 'z', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
+              'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ґ', 'є', 'і', 'ї', 'A', 'B', 'C',
+              'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+              'Z', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
+              'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'Ґ', 'Є', 'І', 'Ї', '!', '"', '#', '$', '%', '&',
+              "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^', '_', '`', '{',
+              '|', '}', '~', '№', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
 
-num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    ALLEMOJI = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙',
+                '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁',
+                '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥',
+                '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴',
+                '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩',
+                '👻', '💀', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '🤚', '🖐', '✋', '🖖', '👌',
+                '🤏', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '🐔', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌',
+                '👐', '🤲', '🤝', '🙏', '💅', '🤳', '💪', '🦾', '🦵', '🦿', '🦶', '👣', '👂', '🦻', '👃', '🧠', '🦷', '🦴', '👀',
+                '👁', '👅', '👄', '💋', '🌂', '🧵', '🧶', '👓', '🕶', '🥽', '🥼', '🦺', '👔', '👕', '👖', '🧣', '🧤', '🧥', '🧦',
+                '👗', '👘', '🥻', '🩱', '🩲', '🩳', '👙', '👚', '👛', '👜', '👝', '🎒', '👞', '👟', '🥾', '🥿', '👠', '👡', '🩰',
+                '👢', '👑', '👒', '🎩', '🎓', '🧢', '⛑', '💄', '💍', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒',
+                '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🥬', '🥒', '🌶', '🌽', '🥕', '🧄', '🧅', '🥔', '🍠', '🥐',
+                '🥯', '🍞', '🥖', '🥨', '🧀', '🥚', '🍳', '🧈', '🥞', '🏀', '🏈', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓',
+                '🏸', '🚕', '🚙', '🚌', '🚎', '🏎', '🚓', '🚑', '🚒', '🚐', '🚚', '🚛', '📱',  '📲', '💻', '🖥', '🖨', '🖱', '🖲',
+                '🕹', '🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽', '🎞', '📞', '📟', '📠', '📺', '📻', '🎙', '🎚',
+                '🎛', '🧭', '⏱', '⏲', '⏰', '🕰', '⏳', '📡', '🔋', '🔌', '💡', '🔦', '🕯', '🪔', '🧯', '🛢', '💸', '💵', '💴', '💶',
+                '💷', '💰', '💳', '💎', '🧰', '🔧', '🔨', '⚒', '🛠', '⛏', '🔩', '🧱', '⛓', '🧲', '🔫', '💣', '🧨', '🪓', '🔪',
+                '🗡', '🛡', '🚬', '🏺', '🔮', '📿', '🧿', '💈', '🔭', '🔬', '🕳', '🩹', '🩺', '💊', '💉', '🩸', '🧬', '🦠', '🧫',
+                '🧪', '🌡', '🧹', '🧺', '🧻', '🚽', '🚰', '🚿', '🛁', '🛀', '🧼', '🪒', '🧽', '🧴', '🛎', '🔑', '🗝', '🚪', '🪑',
+                '🛋', '🛏', '🛌', '🧸', '🖼', '🛍', '🛒', '🎁', '🎈', '🎏', '🎀', '🎊', '🎉', '🎎', '🏮', '🎐', '🧧', '📩', '📨', '📧',
+                '💌', '📥', '📤', '📦', '🏷', '📪', '📫', '📬', '📭', '📮', '📯', '📜', '📃', '📄', '📑', '🧾', '📊', '📈', '📉',
+                '🗒', '🗓', '📆', '📅', '🗑', '📇', '🗃', '🗳', '🗄', '📋', '📁', '📂', '🗂', '🗞', '📰', '📓', '📔', '📒', '📕', '📗',
+                '📘', '📙', '📚', '📖', '🔖', '🧷', '🔗', '📎', '🖇', '📐', '📏', '🧮', '📌', '📍', '🖊', '🖋', '🖌', '🖍', '📝', '🔍',
+                '🔎', '🔏', '🔐', '🔒', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '💕', '💞', '💓', '💗', '💖', '💘',
+                '💝', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '🔺', '🔻', '🔸', '🔹', '🔶', '🟧', '🟨', '🟩', '🟦', '🟪', '🏴', '🏁', '🚩',
+                '🚧', '🚦', '🚥', '🗺', '🗿', '🗽', '🗼', '🗻', '🏕', '🏀', '🍁', '🍄', '🐚', '🪐', '🌝', '🌚', '☄', '💥', '🔥', '🐷', '🐸']
 
-def split(s): return [char for char in s]
+    emojiShuffle = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙',
+                '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁',
+                '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥',
+                '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴',
+                '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩',
+                '👻', '💀', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '🤚', '🖐', '✋', '🖖', '👌',
+                '🤏', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '🐔', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌',
+                '👐', '🤲', '🤝', '🙏', '💅', '🤳', '💪', '🦾', '🦵', '🦿', '🦶', '👣', '👂', '🦻', '👃', '🧠', '🦷', '🦴', '👀',
+                '👁', '👅', '👄', '💋', '🌂', '🧵', '🧶', '👓', '🕶', '🥽', '🥼', '🦺', '👔', '👕', '👖', '🧣', '🧤', '🧥', '🧦',
+                '👗', '👘', '🥻', '🩱', '🩲', '🩳', '👙', '👚', '👛', '👜', '👝', '🎒', '👞', '👟', '🥾', '🥿', '👠', '👡', '🩰',
+                '👢', '👑', '👒', '🎩', '🎓', '🧢', '⛑', '💄', '💍', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒',
+                '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🥬', '🥒', '🌶', '🌽', '🥕', '🧄', '🧅', '🥔', '🍠', '🥐',
+                '🥯', '🍞', '🥖', '🥨', '🧀', '🥚', '🍳', '🧈', '🥞', '🏀', '🏈', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓',
+                '🏸', '🚕', '🚙', '🚌', '🚎', '🏎', '🚓', '🚑', '🚒', '🚐', '🚚', '🚛', '📱',  '📲', '💻', '🖥', '🖨', '🖱', '🖲',
+                '🕹', '🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽', '🎞', '📞', '📟', '📠', '📺', '📻', '🎙', '🎚',
+                '🎛', '🧭', '⏱', '⏲', '⏰', '🕰', '⏳', '📡', '🔋', '🔌', '💡', '🔦', '🕯', '🪔', '🧯', '🛢', '💸', '💵', '💴', '💶',
+                '💷', '💰', '💳', '💎', '🧰', '🔧', '🔨', '⚒', '🛠', '⛏', '🔩', '🧱', '⛓', '🧲', '🔫', '💣', '🧨', '🪓', '🔪',
+                '🗡', '🛡', '🚬', '🏺', '🔮', '📿', '🧿', '💈', '🔭', '🔬', '🕳', '🩹', '🩺', '💊', '💉', '🩸', '🧬', '🦠', '🧫',
+                '🧪', '🌡', '🧹', '🧺', '🧻', '🚽', '🚰', '🚿', '🛁', '🛀', '🧼', '🪒', '🧽', '🧴', '🛎', '🔑', '🗝', '🚪', '🪑',
+                '🛋', '🛏', '🛌', '🧸', '🖼', '🛍', '🛒', '🎁', '🎈', '🎏', '🎀', '🎊', '🎉', '🎎', '🏮', '🎐', '🧧', '📩', '📨', '📧',
+                '💌', '📥', '📤', '📦', '🏷', '📪', '📫', '📬', '📭', '📮', '📯', '📜', '📃', '📄', '📑', '🧾', '📊', '📈', '📉',
+                '🗒', '🗓', '📆', '📅', '🗑', '📇', '🗃', '🗳', '🗄', '📋', '📁', '📂', '🗂', '🗞', '📰', '📓', '📔', '📒', '📕', '📗',
+                '📘', '📙', '📚', '📖', '🔖', '🧷', '🔗', '📎', '🖇', '📐', '📏', '🧮', '📌', '📍', '🖊', '🖋', '🖌', '🖍', '📝', '🔍',
+                '🔎', '🔏', '🔐', '🔒', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '💕', '💞', '💓', '💗', '💖', '💘',
+                '💝', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '🔺', '🔻', '🔸', '🔹', '🔶', '🟧', '🟨', '🟩', '🟦', '🟪', '🏴', '🏁', '🚩',
+                '🚧', '🚦', '🚥', '🗺', '🗿', '🗽', '🗼', '🗻', '🏕', '🏀', '🍁', '🍄', '🐚', '🪐', '🌝', '🌚', '☄', '💥', '🔥', '🐷', '🐸']
 
-def listToString(s):
-    str1 = ""
-    for ele in s:
-        str1 += ele
-    return str1
+    num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-def genSeed(seed1,seed2,seed3):
-    if seed1<10: seed = '00'+str(seed1)
-    elif 10<=seed1<100: seed = '0'+str(seed1)
-    else: seed = str(seed1)
+    def split(s): return [char for char in s]
 
-    if seed2<10: seed += '00'+str(seed2)
-    elif 10<=seed2<100: seed += '0'+str(seed2)
-    else: seed += str(seed2)
+    def listToString(s):
+        str1 = ""
+        for ele in s:
+            str1 += ele
+        return str1
 
-    if seed3<10: seed += '00'+str(seed3)
-    elif 10<=seed3<100: seed += '0'+str(seed3)
-    else: seed += str(seed3)
+    def genSeed(seed1,seed2,seed3):
+        if seed1<10: seed = '00'+str(seed1)
+        elif 10<=seed1<100: seed = '0'+str(seed1)
+        else: seed = str(seed1)
 
-    return (seed)
+        if seed2<10: seed += '00'+str(seed2)
+        elif 10<=seed2<100: seed += '0'+str(seed2)
+        else: seed += str(seed2)
 
-def genSeedSingle(seed1):
-    if seed1<10: seed = '00'+str(seed1)
-    elif 10<=seed1<100: seed = '0'+str(seed1)
-    else: seed = str(seed1)
+        if seed3<10: seed += '00'+str(seed3)
+        elif 10<=seed3<100: seed += '0'+str(seed3)
+        else: seed += str(seed3)
 
-    return (seed)
+        return (seed)
 
-def randGenSeed():
-    c1 = str(random.randint(0, 9))
-    c2 = str(random.randint(0, 9))
-    c3 = str(random.randint(0, 9))
+    def genSeedSingle(seed1):
+        if seed1<10: seed = '00'+str(seed1)
+        elif 10<=seed1<100: seed = '0'+str(seed1)
+        else: seed = str(seed1)
 
-    if int(c1+c2+c3)>500: seed = genSeedSingle(int(c1+c2+c3) - 500)
-    else: seed = c1+c2+c3
+        return (seed)
 
-    c4 = str(random.randint(0, 9))
-    c5 = str(random.randint(0, 9))
-    c6 = str(random.randint(0, 9))
+    def randGenSeed():
+        c1 = str(random.randint(0, 9))
+        c2 = str(random.randint(0, 9))
+        c3 = str(random.randint(0, 9))
 
-    if int(c4+c5+c6)>500: seed += genSeedSingle(int(c4+c5+c6) - 500)
-    else: seed += c4+c5+c6
+        if int(c1+c2+c3)>500: seed = genSeedSingle(int(c1+c2+c3) - 500)
+        else: seed = c1+c2+c3
 
-    c7 = str(random.randint(0, 9))
-    c8 = str(random.randint(0, 9))
-    c9 = str(random.randint(0, 9))
+        c4 = str(random.randint(0, 9))
+        c5 = str(random.randint(0, 9))
+        c6 = str(random.randint(0, 9))
 
-    if int(c7 + c8 + c9) > 500: seed += genSeedSingle(int(c7 + c8 + c9) - 500)
-    else: seed += c7 + c8 + c9
+        if int(c4+c5+c6)>500: seed += genSeedSingle(int(c4+c5+c6) - 500)
+        else: seed += c4+c5+c6
 
-    return (seed)
+        c7 = str(random.randint(0, 9))
+        c8 = str(random.randint(0, 9))
+        c9 = str(random.randint(0, 9))
 
-def shuflle(seedInpShuflle):
-    seedsplit = split(seedInpShuflle)
-    emojiShuffleNew = emojiShuffle[:]
+        if int(c7 + c8 + c9) > 500: seed += genSeedSingle(int(c7 + c8 + c9) - 500)
+        else: seed += c7 + c8 + c9
 
-    if len(seedsplit) == 9 and seedsplit[0] in num and seedsplit[1] in num and seedsplit[2] in num and seedsplit[3] in num and \
-                seedsplit[4] in num and seedsplit[5] in num and seedsplit[6] in num and seedsplit[7] in num and \
-            seedsplit[8] in num:
-        if int(seedsplit[0]+seedsplit[1]+seedsplit[2])>500: seed = genSeedSingle(int(seedsplit[0]+seedsplit[1]+seedsplit[2]) - 500)
-        else: seed = seedsplit[0]+seedsplit[1]+seedsplit[2]
+        return (seed)
 
-        if int(seedsplit[3]+seedsplit[4]+seedsplit[5])>500: seed += genSeedSingle(int(seedsplit[3]+seedsplit[4]+seedsplit[5]) - 500)
-        else: seed += seedsplit[3]+seedsplit[4]+seedsplit[5]
+    def shuflle(seedInpShuflle):
+        seedsplit = split(seedInpShuflle)
+        emojiShuffleNew = emojiShuffle[:]
 
-        if int(seedsplit[6]+seedsplit[7]+seedsplit[8])>500: seed += genSeedSingle(int(seedsplit[6]+seedsplit[7]+seedsplit[8]) - 500)
-        else: seed += seedsplit[6]+seedsplit[7]+seedsplit[8]
+        if len(seedsplit) == 9 and seedsplit[0] in num and seedsplit[1] in num and seedsplit[2] in num and seedsplit[3] in num and \
+                    seedsplit[4] in num and seedsplit[5] in num and seedsplit[6] in num and seedsplit[7] in num and \
+                seedsplit[8] in num:
+            if int(seedsplit[0]+seedsplit[1]+seedsplit[2])>500: seed = genSeedSingle(int(seedsplit[0]+seedsplit[1]+seedsplit[2]) - 500)
+            else: seed = seedsplit[0]+seedsplit[1]+seedsplit[2]
 
-        random.Random(seed).shuffle(emojiShuffleNew)
-        return (seed, emojiShuffleNew)
-    elif len(seedsplit) == 3 and seedsplit[0] in ALLEMOJI and seedsplit[1] in ALLEMOJI and \
-            seedsplit[2] in ALLEMOJI:
+            if int(seedsplit[3]+seedsplit[4]+seedsplit[5])>500: seed += genSeedSingle(int(seedsplit[3]+seedsplit[4]+seedsplit[5]) - 500)
+            else: seed += seedsplit[3]+seedsplit[4]+seedsplit[5]
 
-        random.Random(fromEmojitoSeed(seedInpShuflle)).shuffle(emojiShuffleNew)
-        return (fromEmojitoSeed(seedInpShuflle), emojiShuffleNew)
-    else:
-        seed = randGenSeed()
-        random.Random(seed).shuffle(emojiShuffleNew)
-        return (seed, emojiShuffleNew)
+            if int(seedsplit[6]+seedsplit[7]+seedsplit[8])>500: seed += genSeedSingle(int(seedsplit[6]+seedsplit[7]+seedsplit[8]) - 500)
+            else: seed += seedsplit[6]+seedsplit[7]+seedsplit[8]
 
-def fromSeedtoEmoji(seed):
-    seedsplit = split(seed)
-    return (ALLEMOJI[int(seedsplit[0] + seedsplit[1] + seedsplit[2])] + ALLEMOJI[int(seedsplit[3] + seedsplit[4] + seedsplit[5])] +
-            ALLEMOJI[int(seedsplit[6] + seedsplit[7] + seedsplit[8])])
+            random.Random(seed).shuffle(emojiShuffleNew)
+            return (seed, emojiShuffleNew)
+        elif len(seedsplit) == 3 and seedsplit[0] in ALLEMOJI and seedsplit[1] in ALLEMOJI and \
+                seedsplit[2] in ALLEMOJI:
 
-def fromEmojitoSeed(emoji):
-    emojisplit = split(emoji)
-    return (genSeed(ALLEMOJI.index(emojisplit[0]), ALLEMOJI.index(emojisplit[1]), ALLEMOJI.index(emojisplit[2])))
-
-codeButton = document.getElementById('code')
-decodeButton = document.getElementById('decode')
-infoButton = document.getElementById('info')
-ElistButton = document.getElementById('Elist')
-SlistButton = document.getElementById('Slist')
-
-def codeFunc(*args, **kwargs):
-    seed = Element('codezSeed').element.value
-    text = Element('codez').element.value
-
-    textsplit = split(text)
-    code = []
-
-    seed, emojiShuffleNew = shuflle(seed)
-    code.append(fromSeedtoEmoji(seed))
-
-    for i in range(len(textsplit)):
-        if textsplit[i] in ALLDIC:
-            code.append(emojiShuffleNew[ALLDIC.index(textsplit[i])])
-        else: code.append(textsplit[i])
-
-    Element('output').write(f'{listToString(code)}')
-    Element('output-seed').write(f'seed: {seed}')
-Element
-def decodeFunc(*args, **kwargs):
-    code = Element('decodez').element.value
-
-    codesplit = split(code)
-    text = []
-
-    if len(codesplit) >= 3:
-        if codesplit[0] in ALLEMOJI and codesplit[1] in ALLEMOJI and codesplit[2] in ALLEMOJI:
-            seed = codesplit[0] + codesplit[1] + codesplit[2]
-            a, emojiShuffleNew = shuflle(seed)
-            seed = fromEmojitoSeed(seed)
-
-            for i in range(len(codesplit)):
-                if i != 0 and i != 1 and i != 2:
-                    if codesplit[i] in ALLEMOJI:
-                        emojiIndex = emojiShuffleNew.index(codesplit[i])
-
-                        if 167 <= emojiIndex <= 333: emojiIndex -= 167
-                        elif 333 <= emojiIndex <= 500: emojiIndex -= 334
-
-                        text.append(ALLDIC[emojiIndex])
-                    else:
-                        text.append(codesplit[i])
+            random.Random(fromEmojitoSeed(seedInpShuflle)).shuffle(emojiShuffleNew)
+            return (fromEmojitoSeed(seedInpShuflle), emojiShuffleNew)
         else:
-            seed = '|NO SEED|'
-            text.append('|NO SEED| ')
-            for i in range(len(codesplit)): text.append(codesplit[i])
+            seed = randGenSeed()
+            random.Random(seed).shuffle(emojiShuffleNew)
+            return (seed, emojiShuffleNew)
 
-        Element('output').write(f'{listToString(text)}')
+    def fromSeedtoEmoji(seed):
+        seedsplit = split(seed)
+        return (ALLEMOJI[int(seedsplit[0] + seedsplit[1] + seedsplit[2])] + ALLEMOJI[int(seedsplit[3] + seedsplit[4] + seedsplit[5])] +
+                ALLEMOJI[int(seedsplit[6] + seedsplit[7] + seedsplit[8])])
+
+    def fromEmojitoSeed(emoji):
+        emojisplit = split(emoji)
+        return (genSeed(ALLEMOJI.index(emojisplit[0]), ALLEMOJI.index(emojisplit[1]), ALLEMOJI.index(emojisplit[2])))
+
+    codeButton = document.getElementById('code')
+    decodeButton = document.getElementById('decode')
+    infoButton = document.getElementById('info')
+    ElistButton = document.getElementById('Elist')
+    SlistButton = document.getElementById('Slist')
+
+    def codeFunc(*args, **kwargs):
+        seed = Element('codezSeed').element.value
+        text = Element('codez').element.value
+
+        textsplit = split(text)
+        code = []
+
+        seed, emojiShuffleNew = shuflle(seed)
+        code.append(fromSeedtoEmoji(seed))
+
+        for i in range(len(textsplit)):
+            if textsplit[i] in ALLDIC:
+                code.append(emojiShuffleNew[ALLDIC.index(textsplit[i])])
+            else: code.append(textsplit[i])
+
+        Element('output').write(f'{listToString(code)}')
         Element('output-seed').write(f'seed: {seed}')
-    else:
-        Element('output').write('😔Занадто короткий код')
-        Element('output-seed').write('seed: |NO SEED|')
+    Element
+    def decodeFunc(*args, **kwargs):
+        code = Element('decodez').element.value
 
-def infoFunc(*args, **kwargs):
-    Element('output').clear()
-    Element('output').write(HTML("<b>Кодування</b><br><br>Перед тим як кодувати текст ви можете ввести сід:<br>-сід може складатися з трьох смайлів, які є в списку;<br>-сід може складатися з 9 цифр.<br>Сід вводити НЕОБОВ'ЯЗКОВО. В такому випадку він згенерується випадково. Також він буде випадковим у випадку помилки при вводі.<br>Далі ви вводите текст, котрий перетвориться на набір смайлів, перші три з яких будуть відповідати за сід, а останні - закодована інформація.<br>Закодувати можна будь-який символ зі списку, інші будуть передаватися некодуючись.<br><br><b>Розкодування</b><br><br>Ввівши код і натиснувши кнопку вам видасть розкодовану інформацію.<br>Що саме закодовно програма визначає по першим трьом смайлам, які є сідом.<br><br>Цифровий сід можна знайти в окремій строці нижче."))
+        codesplit = split(code)
+        text = []
 
-def ElistFunc(*args, **kwargs):
-    Element('output').write(f"{listToString(ALLEMOJI)}")
+        if len(codesplit) >= 3:
+            if codesplit[0] in ALLEMOJI and codesplit[1] in ALLEMOJI and codesplit[2] in ALLEMOJI:
+                seed = codesplit[0] + codesplit[1] + codesplit[2]
+                a, emojiShuffleNew = shuflle(seed)
+                seed = fromEmojitoSeed(seed)
 
-def SlistFunc(*args, **kwargs):
-    Element('output').write(f"{listToString(ALLDIC)}")
+                for i in range(len(codesplit)):
+                    if i != 0 and i != 1 and i != 2:
+                        if codesplit[i] in ALLEMOJI:
+                            emojiIndex = emojiShuffleNew.index(codesplit[i])
 
-cc = ffi.create_proxy(codeFunc)
-ccD = ffi.create_proxy(decodeFunc)
-ccI = ffi.create_proxy(infoFunc)
-ccE = ffi.create_proxy(ElistFunc)
-ccS = ffi.create_proxy(SlistFunc)
+                            if 167 <= emojiIndex <= 333: emojiIndex -= 167
+                            elif 333 <= emojiIndex <= 500: emojiIndex -= 334
 
-codeButton.addEventListener('click',cc)
-decodeButton.addEventListener('click',ccD)
-infoButton.addEventListener('click',ccI)
-ElistButton.addEventListener('click',ccE)
-SlistButton.addEventListener('click',ccS)
-</py-script>
+                            text.append(ALLDIC[emojiIndex])
+                        else:
+                            text.append(codesplit[i])
+            else:
+                seed = '|NO SEED|'
+                text.append('|NO SEED| ')
+                for i in range(len(codesplit)): text.append(codesplit[i])
 
-</body>
-</html>
+            Element('output').write(f'{listToString(text)}')
+            Element('output-seed').write(f'seed: {seed}')
+        else:
+            Element('output').write('😔Занадто короткий код')
+            Element('output-seed').write('seed: |NO SEED|')
+
+    def infoFunc(*args, **kwargs):
+        Element('output').clear()
+        Element('output').write(HTML("<b>Кодування</b><br><br>Перед тим як кодувати текст ви можете ввести сід:<br>-сід може складатися з трьох смайлів, які є в списку;<br>-сід може складатися з 9 цифр.<br>Сід вводити НЕОБОВ'ЯЗКОВО. В такому випадку він згенерується випадково. Також він буде випадковим у випадку помилки при вводі.<br>Далі ви вводите текст, котрий перетвориться на набір смайлів, перші три з яких будуть відповідати за сід, а останні - закодована інформація.<br>Закодувати можна будь-який символ зі списку, інші будуть передаватися некодуючись.<br><br><b>Розкодування</b><br><br>Ввівши код і натиснувши кнопку вам видасть розкодовану інформацію.<br>Що саме закодовно програма визначає по першим трьом смайлам, які є сідом.<br><br>Цифровий сід можна знайти в окремій строці нижче."))
+
+    def ElistFunc(*args, **kwargs):
+        Element('output').write(f"{listToString(ALLEMOJI)}")
+
+    def SlistFunc(*args, **kwargs):
+        Element('output').write(f"{listToString(ALLDIC)}")
+
+    cc = ffi.create_proxy(codeFunc)
+    ccD = ffi.create_proxy(decodeFunc)
+    ccI = ffi.create_proxy(infoFunc)
+    ccE = ffi.create_proxy(ElistFunc)
+    ccS = ffi.create_proxy(SlistFunc)
+
+    codeButton.addEventListener('click',cc)
+    decodeButton.addEventListener('click',ccD)
+    infoButton.addEventListener('click',ccI)
+    ElistButton.addEventListener('click',ccE)
+    SlistButton.addEventListener('click',ccS)
+    </py-script>
+  </body>
 </html>
