@@ -1,5 +1,5 @@
-const countDate = new Date('Jun 23, 2023 16:00:00').getTime();
-const countFrom = false;
+const countDate = new Date('Jun 12, 2023 00:00:00').getTime();
+const countFrom = true;
 
 const x = setInterval(() => {
   const now = new Date().getTime();
