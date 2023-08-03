@@ -33,11 +33,15 @@
 
     <div class="middle">
       <div class="middle__wrapper">
-        <input id="codezSeed" class="input input--25" placeholder="Сід" /><input id="codez" class="input input--75" placeholder="Текст"/><br />
-        <button id="code" class="button">Закодувати</button><br>
+        <input id="codezSeed" class="input input--25" placeholder="Сід" /><input
+          id="codez"
+          class="input input--75"
+          placeholder="Текст"
+        /><br />
+        <button id="code" class="button">Закодувати</button><br />
 
-        <input id="decodez" placeholder="Код" class="input"><br>
-        <button id="decode" class="button">Розкодувати</button><br>
+        <input id="decodez" placeholder="Код" class="input" /><br />
+        <button id="decode" class="button">Розкодувати</button><br />
 
         <p id="output" class="output"><span>...</span></p>
         <p id="output-seed" class="output output--seed">seed: |NO SEED|</p>
@@ -57,8 +61,10 @@
 
     <script src="../copy.js"></script>
 
+    <!-- prettier-ignore -->
     <py-script>
     import asyncio
+    import js
     from pyodide import ffi
     import random
 
@@ -129,6 +135,20 @@
 
     def split(s): return [char for char in s]
 
+    def split2(s):
+      result = []
+      i = 0
+
+      while i < len(s):
+        if ord(s[i]) >= 0xD800 and ord(s[i]) <= 0xDBFF:
+          result.append(s[i:i+2])
+          i += 2
+        else:
+          result.append(s[i])
+          i += 1
+
+      return result
+
     def listToString(s):
         str1 = ""
         for ele in s:
@@ -182,7 +202,7 @@
         return (seed)
 
     def shuflle(seedInpShuflle):
-        seedsplit = split(seedInpShuflle)
+        seedsplit = split2(seedInpShuflle)
         emojiShuffleNew = emojiShuffle[:]
 
         if len(seedsplit) == 9 and seedsplit[0] in num and seedsplit[1] in num and seedsplit[2] in num and seedsplit[3] in num and \
@@ -210,25 +230,25 @@
             return (seed, emojiShuffleNew)
 
     def fromSeedtoEmoji(seed):
-        seedsplit = split(seed)
+        seedsplit = split2(seed)
         return (ALLEMOJI[int(seedsplit[0] + seedsplit[1] + seedsplit[2])] + ALLEMOJI[int(seedsplit[3] + seedsplit[4] + seedsplit[5])] +
                 ALLEMOJI[int(seedsplit[6] + seedsplit[7] + seedsplit[8])])
 
     def fromEmojitoSeed(emoji):
-        emojisplit = split(emoji)
+        emojisplit = split2(emoji)
         return (genSeed(ALLEMOJI.index(emojisplit[0]), ALLEMOJI.index(emojisplit[1]), ALLEMOJI.index(emojisplit[2])))
 
-    codeButton = document.getElementById('code')
-    decodeButton = document.getElementById('decode')
-    infoButton = document.getElementById('info')
-    ElistButton = document.getElementById('Elist')
-    SlistButton = document.getElementById('Slist')
+    codeButton = js.document.getElementById('code')
+    decodeButton = js.document.getElementById('decode')
+    infoButton = js.document.getElementById('info')
+    ElistButton = js.document.getElementById('Elist')
+    SlistButton = js.document.getElementById('Slist')
 
     def codeFunc(*args, **kwargs):
         seed = Element('codezSeed').element.value
         text = Element('codez').element.value
 
-        textsplit = split(text)
+        textsplit = split2(text)
         code = []
 
         seed, emojiShuffleNew = shuflle(seed)
@@ -245,7 +265,7 @@
     def decodeFunc(*args, **kwargs):
         code = Element('decodez').element.value
 
-        codesplit = split(code)
+        codesplit = split2(code)
         text = []
 
         if len(codesplit) >= 3:

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ua">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code 4</title>
-    <link rel="shortcut icon" href="../img/logos/4.png" type="image/png">
-    <link rel="stylesheet" href="../styles/codes/style.css">
+    <link rel="shortcut icon" href="../img/logos/4.png" type="image/png" />
+    <link rel="stylesheet" href="../styles/codes/style.css" />
 
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   </head>
@@ -29,23 +29,25 @@
 
     <div class="middle">
       <div class="middle__wrapper">
-        <input id="codez" placeholder="Текст" class="input"><br>
-        <button id="code" class="button">Закодувати</button><br>
+        <input id="codez" placeholder="Текст" class="input" /><br />
+        <button id="code" class="button">Закодувати</button><br />
 
-        <input id="decodez" placeholder="Код" class="input"><br>
-        <button id="decode" class="button">Розкодувати</button><br>
-      
+        <input id="decodez" placeholder="Код" class="input" /><br />
+        <button id="decode" class="button">Розкодувати</button><br />
+
         <p id="output" class="output">...</p>
         <button onclick="copyElementText()" class="button">Скопіювати</button>
       </div>
     </div>
-    
+
     <a class="link" href="https://chsw.pp.ua/codes/">Made by GGsmou</a>
-    
+
     <script src="../copy.js"></script>
 
+    <!-- prettier-ignore -->
     <py-script>
     import asyncio
+    import js
     from pyodide import ffi
     import random
 
@@ -71,6 +73,20 @@
 
     def split(s): return [char for char in s]
 
+    def split2(s):
+      result = []
+      i = 0
+
+      while i < len(s):
+        if ord(s[i]) >= 0xD800 and ord(s[i]) <= 0xDBFF:
+          result.append(s[i:i+2])
+          i += 2
+        else:
+          result.append(s[i])
+          i += 1
+
+      return result
+
     def listToString(s):
         str1 = ""
         for ele in s:
@@ -82,13 +98,13 @@
         random.Random(seed).shuffle(dicShuffleNew)
         return (dicShuffleNew)
 
-    codeButton = document.getElementById('code')
-    decodeButton = document.getElementById('decode')
+    codeButton = js.document.getElementById('code')
+    decodeButton = js.document.getElementById('decode')
 
     def codeFunc(*args, **kwargs):
         text = Element('codez').element.value
 
-        textsplit = split(text)
+        textsplit = split2(text)
         code = []
 
         if len(textsplit) == 1:
@@ -113,7 +129,7 @@
     def decodeFunc(*args, **kwargs):
         code = Element('decodez').element.value
 
-        codesplit = split(code)
+        codesplit = split2(code)
         codesplit = [i for i in codesplit[::-1]]
         text = []
 

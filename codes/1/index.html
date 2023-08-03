@@ -32,133 +32,159 @@
       from browser.widgets.dialog import InfoDialog
 
       def code(ev):
-      	eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-      	rus = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
-      	ukr = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
+        eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        rus = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+        ukr = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
 
-      	engU = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-      	rusU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
-      	ukrU = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ю', 'Я']
+        engU = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        rusU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
+        ukrU = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ю', 'Я']
 
-      	num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-      	dic = []
-      	dicU = []
+        dic = []
+        dicU = []
 
-      	def split(s): return [char for char in s]
+        def split(s): return [char for char in s]
 
-      	def listToString(s):
-      		str1 = ""
-      		for ele in s:
-      		    str1 += ele
-      		return str1
+        def split2(s):
+          result = []
+          i = 0
 
-      	text = []
-      	textc = document['codez'].value
-      	textcsplit = split(textc)
+          while i < len(s):
+            if ord(s[i]) >= 0xD800 and ord(s[i]) <= 0xDBFF:
+              result.append(s[i:i+2])
+              i += 2
+            else:
+              result.append(s[i])
+              i += 1
 
-      	for i in range(len(textcsplit)):
-      	    if (textcsplit[i] in eng or textcsplit[i] in engU) and dic != eng:
-      	        dic = eng
-      	        dicU = engU
-      	        text.append('&' + str(0))
-      	    elif (textcsplit[i] in rus or textcsplit[i] in rusU):
-      	        if dic != rus:
-      	        	dic = rus
-      	        	dicU = rusU
-      	        	text.append('&' + str(1))
-      	    elif (textcsplit[i] in ukr or textcsplit[i] in ukrU) and dic != ukr:
-      	        dic = ukr
-      	        dicU = ukrU
-      	        text.append('&' + str(2))
+          return result
 
-      	    if textcsplit[i] in dic: text.append('.'+str((dic.index(textcsplit[i])+1)))
-      	    elif textcsplit[i] in dicU: text.append(':'+str((dicU.index(textcsplit[i])+1)))
-      	    elif textcsplit[i] in num: text.append(','+str(textcsplit[i]))
-      	    elif textcsplit[i] == ' ': text.append('_')
-      	    else: text.append('/'+str(textcsplit[i]))
+        def listToString(s):
+          str1 = ""
+          for ele in s:
+            str1 += ele
+          return str1
 
-      	document['output'].text = listToString(text)
+        text = []
+        textc = document['codez'].value
+        textcsplit = split2(textc)
+
+        for i in range(len(textcsplit)):
+          if (textcsplit[i] in eng or textcsplit[i] in engU) and dic != eng:
+            dic = eng
+            dicU = engU
+            text.append('&' + str(0))
+          elif (textcsplit[i] in rus or textcsplit[i] in rusU):
+            if dic != rus:
+              dic = rus
+              dicU = rusU
+              text.append('&' + str(1))
+          elif (textcsplit[i] in ukr or textcsplit[i] in ukrU) and dic != ukr:
+            dic = ukr
+            dicU = ukrU
+            text.append('&' + str(2))
+
+          if textcsplit[i] in dic: text.append('.'+str((dic.index(textcsplit[i])+1)))
+          elif textcsplit[i] in dicU: text.append(':'+str((dicU.index(textcsplit[i])+1)))
+          elif textcsplit[i] in num: text.append(','+str(textcsplit[i]))
+          elif textcsplit[i] == ' ': text.append('_')
+          else: text.append('/'+str(textcsplit[i]))
+
+        document['output'].text = listToString(text)
       document["code"].bind("click", code)
-
 
       #
 
       def decode(ev):
-      	eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-      	rus = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
-      	ukr = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
+        eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        rus = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+        ukr = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
 
-      	engU = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-      	rusU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
-      	ukrU = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ю', 'Я']
+        engU = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        rusU = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
+        ukrU = ['А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ю', 'Я']
 
-      	num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-      	dic = []
-      	dicU = []
+        dic = []
+        dicU = []
 
-      	def split(s): return [char for char in s]
+        def split(s): return [char for char in s]
 
-      	def listToString(s):
-      	    str1 = ""
-      	    for ele in s:
-      	        str1 += ele
-      	    return str1
+        def split2(s):
+          result = []
+          i = 0
 
-      	code = []
-      	codec = document['decodez'].value
-      	codecsplit = split(codec)
-      	i=0
-      	while i < len(codecsplit):
-      		jump = 2
+          while i < len(s):
+            if ord(s[i]) >= 0xD800 and ord(s[i]) <= 0xDBFF:
+              result.append(s[i:i+2])
+              i += 2
+            else:
+              result.append(s[i])
+              i += 1
 
-      	        if codecsplit[i] == '&':
-      	            if codecsplit[i+1] == '0':
-      	                dic = eng
-      	                dicU = engU
-      	            elif codecsplit[i+1] == '1':
-      	                dic = rus
-      	                dicU = rusU
-      	            elif codecsplit[i+1] == '2':
-      	                dic = ukr
-      	                dicU = ukrU
-      	        elif codecsplit[i] == '.' and codecsplit[i + 1] in num:
-      	            if i + 3 <= len(codecsplit):
-      	                if codecsplit[i + 2] in num:
-      	                    if len(dic)<(int(codecsplit[i + 1] + codecsplit[i + 2]) - 1) or codecsplit[i + 1] == '0': code.append('■')
-      	                    else:
-      	                        code.append(dic[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
-      	                        jump = 3
-      	                else:
-      	                    if len(dic)<(int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
-      	                    else: code.append(dic[int(codecsplit[i + 1]) - 1])
-      	            else:
-      	                if len(dic) < (int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
-      	                else: code.append(dic[int(codecsplit[i + 1]) - 1])
-      	        elif codecsplit[i] == ':' and codecsplit[i + 1] in num:
-      	            if i + 3 <= len(codecsplit):
-      	                if codecsplit[i + 2] in num:
-      	                    if len(dicU)<(int(codecsplit[i + 1] + codecsplit[i + 2]) - 1) or codecsplit[i + 1] == '0': code.append('■')
-      	                    else:
-      	                        code.append(dicU[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
-      	                        jump = 3
-      	                else:
-      	                    if len(dicU)<(int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
-      	                    else: code.append(dicU[int(codecsplit[i + 1]) - 1])
-      	            else:
-      	                if len(dicU) < (int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
-      	                else: code.append(dicU[int(codecsplit[i + 1]) - 1])
-      	        elif codecsplit[i] == ',' and codecsplit[i + 1] in num: code.append((codecsplit[i + 1]))
-      	        elif codecsplit[i] == '/': code.append((codecsplit[i + 1]))
-      	        elif codecsplit[i] == '_':
-      	            code.append(' ')
-      	            jump = 1
-      	        else: jump = 1
+          return result
 
-      	        i += jump
+        def listToString(s):
+          str1 = ""
+          for ele in s:
+            str1 += ele
+          return str1
 
-      	document['output'].text = listToString(code)
+        code = []
+        codec = document['decodez'].value
+        codecsplit = split2(codec)
+        i=0
+        while i < len(codecsplit):
+          jump = 2
+          if codecsplit[i] == '&':
+            if codecsplit[i+1] == '0':
+              dic = eng
+              dicU = engU
+            elif codecsplit[i+1] == '1':
+              dic = rus
+              dicU = rusU
+            elif codecsplit[i+1] == '2':
+              dic = ukr
+              dicU = ukrU
+          elif codecsplit[i] == '.' and codecsplit[i + 1] in num:
+            if i + 3 <= len(codecsplit):
+              if codecsplit[i + 2] in num:
+                if len(dic)<(int(codecsplit[i + 1] + codecsplit[i + 2]) - 1) or codecsplit[i + 1] == '0': code.append('■')
+                else:
+                  code.append(dic[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
+                  jump = 3
+              else:
+                if len(dic)<(int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
+                else: code.append(dic[int(codecsplit[i + 1]) - 1])
+            else:
+              if len(dic) < (int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
+              else: code.append(dic[int(codecsplit[i + 1]) - 1])
+          elif codecsplit[i] == ':' and codecsplit[i + 1] in num:
+            if i + 3 <= len(codecsplit):
+              if codecsplit[i + 2] in num:
+                if len(dicU)<(int(codecsplit[i + 1] + codecsplit[i + 2]) - 1) or codecsplit[i + 1] == '0': code.append('■')
+                else:
+                  code.append(dicU[int(codecsplit[i + 1] + codecsplit[i + 2]) - 1])
+                  jump = 3
+              else:
+                if len(dicU)<(int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
+                else: code.append(dicU[int(codecsplit[i + 1]) - 1])
+            else:
+              if len(dicU) < (int(codecsplit[i + 1]) - 1) or codecsplit[i + 1] == '0': code.append('■')
+              else: code.append(dicU[int(codecsplit[i + 1]) - 1])
+          elif codecsplit[i] == ',' and codecsplit[i + 1] in num: code.append((codecsplit[i + 1]))
+          elif codecsplit[i] == '/': code.append((codecsplit[i + 1]))
+          elif codecsplit[i] == '_':
+            code.append(' ')
+            jump = 1
+          else: jump = 1
+
+          i += jump
+
+        document['output'].text = listToString(code)
       document["decode"].bind("click", decode)
     </script>
 

@@ -38,6 +38,20 @@
 
         def split(s): return [char for char in s]
 
+        def split2(s):
+          result = []
+          i = 0
+
+          while i < len(s):
+            if ord(s[i]) >= 0xD800 and ord(s[i]) <= 0xDBFF:
+              result.append(s[i:i+2])
+              i += 2
+            else:
+              result.append(s[i])
+              i += 1
+
+          return result
+
         def listToString(s):
           str1 = ""
           for ele in s:
@@ -46,7 +60,7 @@
 
         code = []
         text = document['codez'].value
-        textsplit = split(text)
+        textsplit = split2(text)
 
         for i in range(len(textsplit)):
           if textsplit[i] in SYMB: code.append(EMOJI[SYMB.index(textsplit[i])])
@@ -66,6 +80,20 @@
 
         def split(s): return [char for char in s]
 
+        def split2(s):
+          result = []
+          i = 0
+
+          while i < len(s):
+            if ord(s[i]) >= 0xD800 and ord(s[i]) <= 0xDBFF:
+              result.append(s[i:i+2])
+              i += 2
+            else:
+              result.append(s[i])
+              i += 1
+
+          return result
+
         def listToString(s):
             str1 = ""
             for ele in s:
@@ -74,7 +102,7 @@
 
         text = []
         code = document['decodez'].value
-        codesplit = split(code)
+        codesplit = split2(code)
         codesplitByTwo = []
 
         for i in range(len(codesplit)):
