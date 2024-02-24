@@ -1,5 +1,5 @@
 .main {
-	display: flex;
+  display: flex;
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,7 +13,7 @@
   text-decoration: inherit;
   color: inherit;
 
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 }
 
 .main__link-cont {
@@ -41,4 +41,8 @@
 
 .main__link-cont--codes {
   background-color: hsl(225, 61%, 15%);
+}
+
+.main__link-cont--docs {
+  background-color: hsl(139, 61%, 15%);
 }
